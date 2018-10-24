@@ -4,12 +4,27 @@
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<!--Uso de acentos-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 		<style>
 			body{
 			    margin-top:20px;
 			    background:#d6ead6;
+			}
+
+			.footer {
+				position: relative;
+				bottom: 0;
+				width: 100%;
+				/* Set the fixed height of the footer here */
+				height: 60px;
+				background-color: #f5f5f5;
+			}
+
+			.text-muted {
+				padding-top: 20px;
+				position: relative;
 			}
 
 			.prod-info-main {
@@ -123,6 +138,15 @@
 			    margin-top: 20px;
 			    padding: 9px 0;
 			    width: 100%
+			}
+
+
+			.logo-zone {
+				padding-top: 25px;
+				padding-bottom: 25px;
+				margin-top: 25px;
+				margin-bottom: 25px;
+				display: block;
 			}
 
 			.product-block .product-deatil p.price-container span,
@@ -315,6 +339,10 @@
 
 	<body>
 		<div class="container">
+			<div class "logo-zone">
+				<img src="images/logos/mercamita_logo.png" alt="Mercamita" class="img-responsive center-block">
+			</div>
+
 			<div class="col-xs-12 col-md-6">
 				<div class="prod-info-main prod-wrap clearfix">
 					<div class="row">
@@ -553,5 +581,11 @@
 				</div>  
 			</div>
 		</div>
+
+		<footer class="footer">
+      		<div class="container">
+        		<p class="text-muted">Un producto de Skynet, desarrollado exclusivamente para el ITAM.</p>
+      		</div>
+    	</footer>
 	</body>
 </html>
