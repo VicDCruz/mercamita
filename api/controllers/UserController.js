@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-  create: (req, res) => {
+  create: async (req, res) => {
     var output = {
       status: 200,
       description: "OK"
@@ -19,12 +19,18 @@ module.exports = {
         return res.json(output);
       }
     }
-    User.create(req.allParams());
+    newUser = await User.create(req.allParams()).fetch();
+    console.log(newUser);
     return res.json(output);
   },
 
   read: (req, res) => {
-
+    var id = req.param('id');
+    console.log(id);
+    User.findOne({id: id}).exec((err, user) => {
+      if(err) throw err;
+      return res.json(user);
+    })
   },
 
   update: (req, res) => {

@@ -19,7 +19,8 @@ module.exports = {
         return res.json(output);
       }
     }
-    Product.create(req.allParams());
+    newProduct = Product.create(req.allParams()).fetch();
+    console.log(newProduct);
     return res.json(output);
   },
 

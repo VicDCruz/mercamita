@@ -27,7 +27,17 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
+  // === PRODUCTS ===
+  'POST /products/new': 'ProductController.create',
+  'GET /products/:id': 'ProductController.read',
+  'PUT /products/:id': 'ProductController.update',
+  'DELETE /products/:id': 'ProductController.delete',
 
+  // === USERS ===
+  'POST /users/new': 'UserController.create',
+  'GET /users/:id': 'UserController.read',
+  'PUT /users/:id': 'UserController.update',
+  'DELETE /users/:id': 'UserController.delete',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
