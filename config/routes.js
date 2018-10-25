@@ -27,6 +27,9 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
+  '/listado': {
+    view: 'listado'
+  },
   // === PRODUCTS ===
   'POST /products/new': 'ProductController.create',
   'GET /products/:id': 'ProductController.read',
