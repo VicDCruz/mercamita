@@ -22,7 +22,11 @@
     "start": "NODE_ENV=production node app.js",
     "test": "npm run lint && npm run custom-tests && echo 'Done.'",
     "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
-    "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
+    "custom-tests": "echo \"(No other custom tests yet.)\" && echo",
+    "docker:start": "./run.sh",
+    "docker:start:mac": "docker-machine stop default && docker-machine start default && docker-machine env default && eval $(docker-machine env default) && docker-machine ip default",
+    "docker:dbs": "docker exec -d mercamita_dev mongod &",
+    "docker:ssh": "docker exec -it mercamita_dev bash"
   },
   "main": "app.js",
   "repository": {
