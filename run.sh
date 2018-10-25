@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Remove last running docker container
 docker rm -f mercamita_dev
 
