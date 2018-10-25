@@ -25,7 +25,8 @@
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo",
     "docker:start": "./run.sh",
     "docker:start:mac": "docker-machine stop default && docker-machine start default && docker-machine env default && eval $(docker-machine env default) && docker-machine ip default",
-    "docker:dbs": "docker exec -d mercamita_dev mongod &",
+    "docker:ip:mac": "docker-machine ip default",
+    "docker:dbs": "docker exec -d mercamita_dev service mongodb start",
     "docker:ssh": "docker exec -it mercamita_dev bash"
   },
   "main": "app.js",

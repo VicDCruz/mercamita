@@ -20,6 +20,7 @@ EXPOSE 27017
 # and install dependencies
 RUN apt-get update \
     && apt-get install -y curl \
+    && apt-get install -y vim \
     && apt-get -y autoclean
 
 # nvm environment variables
@@ -45,25 +46,8 @@ RUN npm -g install sails
 # USER node
 
 # Install MongoDB #
-RUN apt-get update \
-    && apt-get install --yes mongodb
-# RUN mongo --eval 'db.runCommand({ connectionStatus: 1 })'
-RUN mongod &
-
-# # Add the package verification key
-# RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
-
-# # Add MongoDB to the repository sources list
-# RUN echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list
-
-# # Update the repository sources list once more
-# RUN apt-get update
-
-# # Install MongoDB package (.deb)
-# RUN apt-get install -y mongodb-10gen
-
-# # Create the default data directory
-# RUN mkdir -p /data/db
-
-# # Set default container command
-# ENTRYPOINT usr/bin/mongod
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+RUN touch /etc/apt/sources.list.d/mongodb-org-4.0.list
+RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+RUN apt-get update
+RUN apt-get install -y mongodb-org
