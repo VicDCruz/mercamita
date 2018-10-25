@@ -10,19 +10,18 @@ module.exports = {
   attributes: {
     name: {
       type: 'string',
-      required: true,
+      required: false,
       defaultsTo: 'NONAME'
     },
     views: {
       type: 'number',
-      required: true,
+      required: false,
       defaultsTo: 0
     },
     price: {
       type: 'number',
       columnType: 'float',
       required: true,
-      defaultsTo: -1
     },
     description: {
       type: 'string',

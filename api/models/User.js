@@ -10,7 +10,7 @@ module.exports = {
   attributes: {
     name: {
       type: 'string',
-      required: true,
+      required: false,
       defaultsTo: 'NONAME'
     },
     account: {
@@ -26,7 +26,7 @@ module.exports = {
       required: true
     },
     telephone: {
-      type: 'int',
+      type: 'number',
       required: false,
     },
     products: {
