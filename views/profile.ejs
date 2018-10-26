@@ -4,6 +4,8 @@ For more information, see:
 • https://sailsjs.com/documentation/concepts/views
 • https://sailsjs.com/documentation/concepts/routes
 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -42,8 +44,13 @@ For more information, see:
             </div>
             <div class="row">
                 <div class="container">
-                        <div>
-                            <h1>{{user.name}}</h1>
+                        <div class="col-md-12">
+                            <div class="col-md-9">
+                                <h1>{{user.name}}</h1>
+                            </div>
+                            <div class="col-md-1 offset-md-3">
+                                <button type="button" class="btn btn-success">Editar información personal</button>
+                            </div>                            
                         </div>
                         
                         <div class="col-md-4 secIzq">
@@ -54,7 +61,7 @@ For more information, see:
                             <div class="spacer"></div>
                             
                             <p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>{{user.telephone}}</p>
-                            <p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>somerandom@email.com</p>
+                            <p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{user.email}}</p>
                             
                             <button type="button" class="btn btn-WL list-group-item active" onclick="wishL()">Lista de deseos</button>
                             <div class="list-group" id="wL" style="display: none;">
@@ -69,12 +76,19 @@ For more information, see:
                         <div class="col-md-7 secDer">
                             <div class="contProd">
                                 <h3>Lista de productos publicados</h3>
-                                <div class="list-group" id="prodPub" style="height: 200px;">
-                                    <button type="button" class="list-group-item">Audífonos Negros</button>
+                                <div class="list-group" id="prodPub">
+                                    <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProd">Audífonos Negros</button>
                                     <button type="button" class="list-group-item">Laptop cool</button>
                                     <button type="button" class="list-group-item">Celular aún más cool</button>
                                 </div>
+                                <div>
+                                    <button type="button" class="btn btn-success right">Editar productos publicados</button>
+                                    <div class="spacer"></div>
+                                </div>
                             </div>
+                            <div class="spacer2"></div>
+                            <div class="spacer2"></div>
+                            <div class="spacer"></div>
                             <div class="contProd">
                                 <h3>Historial de compra-venta</h3>
                                 <div class="list-group" id="prodPub" style="height: 200px;">
@@ -86,6 +100,36 @@ For more information, see:
                         </div>
                 </div>
                 
+                <div class="modal fade" id="modalProd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title">Audífonos Negros</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                                
+                                
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                         <img src="https://store.storeimages.cdn-apple.com/4981/as-images.apple.com/is/image/AppleInc/aos/published/images/M/HA/MHA22/MHA22?wid=572&hei=572&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1465862227050" class="imgProd" alt="avatar"> 
+                                    </div>
+                                    <div class="col-md-6 txtCent">
+                                        <h3>Excelente estado</h3> 
+                                        <h4><b> Categoria: </b> Tecnología</h4><br>
+                                        <h4>Precio a tratar</h4><br>
+                                        <span><b> $5000 </b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            
+                    <div class="foot">
+        
+                    </div>
                 
             </div>
             <div class="foot">
@@ -100,37 +144,38 @@ For more information, see:
 <style>
     /* body{
         /* height: 100%; */
-        /* background-color: #d6ead6 ; */
+        background-color: #d6ead6 ;
+        width: 100%;
     } */
-
     .right {
         position: absolute;
-        right: 0px;
+        right: 15px;
         /* border: 3px solid #73AD21; */
         padding: 10px;
     }
-
     .avatar{
         vertical-align: middle;
         width: 300px;
         height: 270px;
         border-radius: 50%;
     }
-
     /* .cont{
         margin-top: 5px;
         margin-left: 5px;
     } */
-
     .contProd{
         width: 100%;
     }
-
     .navbar{
         background-color: transparent;
         height: 80px;
     }
-
+    .txtCent span{
+        color: #2EB32E;
+    font-family: Lato, sans-serif;
+    font-size: 24px;
+    line-height: 20px;
+    }
     .btn-nav{
         background-color: transparent;
         color: #268c2d;
@@ -140,13 +185,53 @@ For more information, see:
     .secIzq{
         text-align: center;
     }
-
     .spacer{
         height: 10px;
     }
-
+    .spacer2{
+        height: 30px;
+    }
     .btn-WL{
         text-align: center !important;
+    }
+    .btn-Mod{
+        text-align: center !important;
+        color: #fff !important;
+        background-color: #5cb85c;
+        border-color: #4cae4c;
+    }
+    .btn-Mod:hover{
+        color: #fff !important;
+        background-color: #449d44 !important;
+        border-color: #398439;
+    }
+    .imgProd{
+        width: 300px;
+        height: 300px;
+    }
+    .modal-content{
+        width: 100%;
+    }
+    .modal-header{
+        display: -webkit-box;
+    }
+    .modal-title{
+        width: 95%;
+    }
+    
+    .modal-dialog-centered{
+        width: 60% !important;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        min-height: calc(100% - (.5rem * 2));
+        width: 200px;
+    }
+    .txtCent{
+        padding: 70px 0;
     }
     /*
     .secDer{
