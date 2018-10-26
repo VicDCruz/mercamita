@@ -25,10 +25,10 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'pages/homepage'
+    view: 'pages/listado'
   },
-  '/listado': {
-    view: 'listado'
+  '/perfil': {
+    view: 'perfil'
   },
   '/login': {
     view: 'login'
