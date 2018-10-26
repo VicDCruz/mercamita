@@ -32,11 +32,12 @@ ENV NODE_VERSION 4.4.7
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
 
 # Install Node.js
-RUN apt-get install --yes curl
+RUN apt-get update && apt-get -y autoclean
+RUN apt-get install -y curl
 RUN curl --silent --location https://deb.nodesource.com/setup_4.x
-RUN apt-get install --yes nodejs
-RUN apt-get install --yes npm
-RUN apt-get install --yes build-essential
+RUN apt-get install -y nodejs
+RUN apt-get install -y npm
+RUN apt-get install -y build-essential
 
 # install sails
 RUN npm -g install sails
@@ -50,4 +51,4 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75
 RUN touch /etc/apt/sources.list.d/mongodb-org-4.0.list
 RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list
 RUN apt-get update
-RUN apt-get install -y mongodb-org
+RUN apt-get install -y mongodb
