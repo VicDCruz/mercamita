@@ -30,6 +30,9 @@ module.exports.routes = {
   '/listado': {
     view: 'listado'
   },
+  '/login': {
+    view: 'login'
+  },
   // === PRODUCTS ===
   'POST /products/new': 'ProductController.create',
   'GET /products/:id': 'ProductController.read',
@@ -40,7 +43,7 @@ module.exports.routes = {
   'POST /users/new': 'UserController.create',
   'GET /users/:id': 'UserController.read',
   'PUT /users/:id': 'UserController.update',
-  'DELETE /users/:id': 'UserController.delete',
+  'DELETE /users/:id': 'UserController.delete'
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
