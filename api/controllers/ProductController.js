@@ -6,6 +6,10 @@
  */
 
 module.exports = {
+  index: async (req, res) => {
+    products = await Product.find();
+    return res.view('listado', {products: products});
+  },
   create: (req, res) => {
     var output = {
       status: 200,

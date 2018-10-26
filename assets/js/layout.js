@@ -1,1 +1,3 @@
-var app = angular.mode('main', []);
+var app = angular.module('main', [
+    'toastr'
+]);

@@ -14,7 +14,7 @@ module.exports = {
       defaultsTo: 'NONAME'
     },
     account: {
-      type: 'number',
+      type: 'string',
       required: true
     },
     email: {

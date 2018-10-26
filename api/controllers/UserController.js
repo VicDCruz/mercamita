@@ -54,10 +54,38 @@ module.exports = {
       if (err) {
         output.status = 500;
         output.description = "Internal Server Error";
-        return res.json(output);
       }
       return res.json(output);
     });
+  },
+
+  verify: (req, res) => {
+    var account = req.param('account');
+    var password = req.param('password');
+    var output = {
+      status: 200,
+      description: "OK"
+    };
+    if (!account) {
+      output.status = 404;
+      output.description = "Not found";
+      return res.json(output);
+    }
+    User.findOne({
+      account: account,
+      password: password
+    }).exec((err, user) => {
+      if (err || !user) {
+        output.status = 500;
+        output.description = "Internal Server Error";
+      }
+      req.session.user = user;
+      return res.json(output);
+    });
+  },
+  logout: (req, res) => {
+    req.session.user = null;
+    return res.ok();
   },
 };
 

@@ -18,39 +18,42 @@ For more information, see:
     }
 </script>
 
-<div class="perfil">
-    <div class="row">
+<div ng-controller='profileController' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init()">
+    <div class="row perfil">
         <div class="col-md-12">
-            <div class="menu">
-                    <nav class="navbar bg-secondary fixed-top text-uppercase" id="mainNav">
-                        <div class="cont">
-                            <div class="col-md-5">
-                                <a href="listado"><img src="images/mercamita_logo.png" alt="Mercamita"></a>
-                            </div>
-                            
-                            <div class="col-md-7">
-                                <div class="btn-group right" role="group" aria-label="...">
-                                    <button type="button" class="btn btn-nav">INICIO</button>
-                                    <button type="button" class="btn btn-nav">INFORMACIÓN PERSONAL</button>
-                                    <button type="button" class="btn btn-nav">CERRAR SESIÓN</button>
-                                </div>
-                            </div>
-                        </nav>
+            <div class="row">
+                <nav class="navbar navbar-light bg-light">
+                    <div class="col-md-8">
+                        <form class="form-inline my-2 my-lg-0 float-right">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Buscar producto" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="navbar-brand" href="/login" ng-if="user===null">Iniciar sesión</a>
+                        <a class="navbar-brand" href="/profile" ng-if="user!==null">{{user.name | uppercase}}</a>
+                        <a class="navbar-brand" ng-if="user!==null">
+                            <button type="button" ng-click="logout()">
+                                <small>CERRAR SESION</small>
+                            </button>
+                        </a>
+                    </div>
+                </nav>
             </div>
             <div class="row">
                 <div class="container">
                         <div>
-                            <h1>Mariana Hernández</h1>
+                            <h1>{{user.name}}</h1>
                         </div>
                         
                         <div class="col-md-4 secIzq">
-                            <img src="images/chica-1.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
+                            <img src="images/{{user.profile}}" class="avatar img-circle img-thumbnail" alt="avatar">
                             <div class="spacer"></div>
                             <button type="button" class="btn btn-success">Selecciona otra imagen</button>
                             <div class="spacer"></div>
                             <div class="spacer"></div>
                             
-                            <p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>+91 90000 00000</p>
+                            <p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>{{user.telephone}}</p>
                             <p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>somerandom@email.com</p>
                             
                             <button type="button" class="btn btn-WL list-group-item active" onclick="wishL()">Lista de deseos</button>
@@ -95,10 +98,10 @@ For more information, see:
 
 
 <style>
-    body{
+    /* body{
         /* height: 100%; */
-        background-color: #d6ead6 ;
-    }
+        /* background-color: #d6ead6 ; */
+    } */
 
     .right {
         position: absolute;
@@ -114,10 +117,10 @@ For more information, see:
         border-radius: 50%;
     }
 
-    .cont{
+    /* .cont{
         margin-top: 5px;
         margin-left: 5px;
-    }
+    } */
 
     .contProd{
         width: 100%;
