@@ -24,10 +24,26 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'pages/pagPerfil'
+  'GET /': 'ProductController.index',
+  '/profile': {
+    view: 'profile'
   },
+  'GET /login': {
+    view: 'login'
+  },
+  'GET /logout': 'UserController.logout',
+  // === PRODUCTS ===
+  'POST /products/new': 'ProductController.create',
+  'GET /products/:id': 'ProductController.read',
+  'PUT /products/:id': 'ProductController.update',
+  'DELETE /products/:id': 'ProductController.delete',
 
+  // === USERS ===
+  'POST /users/new': 'UserController.create',
+  'GET /users/:id': 'UserController.read',
+  'PUT /users/:id': 'UserController.update',
+  'DELETE /users/:id': 'UserController.delete',
+  'GET /users/verify': 'UserController.verify',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
