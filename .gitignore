@@ -130,5 +130,6 @@ lib-cov
 *.out
 *.pid
 
+package-lock.json
 # next.js build output
 .next
