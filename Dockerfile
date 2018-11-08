@@ -7,10 +7,10 @@ FROM ubuntu:18.04
 MAINTAINER Victor Cruz y Alberto Acosta
 
 # Workin directory
-WORKDIR ~/
+WORKDIR /
 
 # Copy data to working directory
-COPY ./ ~/
+COPY ./ /
 
 # Expose port
 EXPOSE 1337
@@ -21,6 +21,7 @@ EXPOSE 27017
 RUN apt-get update \
     && apt-get install -y curl \
     && apt-get install -y vim \
+    && apt-get install -y systemd \
     && apt-get -y autoclean
 
 # nvm environment variables
@@ -52,3 +53,6 @@ RUN touch /etc/apt/sources.list.d/mongodb-org-4.0.list
 RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list
 RUN apt-get update
 RUN apt-get install -y mongodb
+RUN mkdir -p /data/db
+RUN cp mongodb.conf /etc/mongodb.conf
+RUN systemctl enable mongodb
