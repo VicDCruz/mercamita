@@ -1,4 +1,4 @@
-# eg
+# Mercamita
 
 a [Sails v1](https://sailsjs.com) application
 
@@ -12,6 +12,35 @@ a [Sails v1](https://sailsjs.com) application
 + [Community support options](https://sailsjs.com/support)
 + [Professional / enterprise options](https://sailsjs.com/enterprise)
 
+
+# How To Install
+* Instalar docker [link](https://docs.docker.com/install/)
+* Instalar npm
+  ```console
+  sudo apt install npm
+  # Verificar instalación
+  npm -v
+  ```
+* Verificar que docker se instaló correctamente
+  ```console
+  docker run hello-world
+  ```
+* Bajar el contenedor de skynet
+  ```console
+  docker pull skynetdevelop/mercamita_dev
+  ```
+* Iniciar nuestro contenedor con el archivo:
+  ```console
+  ./runDocker.sh
+  ```
+* Meterse al contenedor (usando NPM y dentro del proyecto ./mercamita) **OPCIONAL**
+  ```console
+  npm run docker:ssh
+  ```
+* Correr Sails Lift **SE USARA UNA TERMINAL PARA VER COMO SE ACTUALIZA SAILS**
+  ```console
+  npm run docker:sails:start
+  ```
 
 ### Version info
 
