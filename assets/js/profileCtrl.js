@@ -1,4 +1,4 @@
-app.controller('profileController', ($scope, toastr, $http, $window) => {
+app.controller('profileCtrl', ($scope, toastr, $http, $window) => {
     $scope.user = null;
     $scope.init = () => {
         if (!$scope.user) $window.location.href = '/';

@@ -20,7 +20,7 @@ For more information, see:
     }
 </script>
 
-<div ng-controller='profileController' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init()">
+<div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init()">
     <div class="row perfil">
         <div class="col-md-12">
             <div class="row">

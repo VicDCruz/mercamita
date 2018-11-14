@@ -3,63 +3,37 @@
 	<head>
 	</head>
 
-	<body ng-controller="listadoController as ctrl" ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; products=<%=JSON.stringify(products)%>;">
-		<div class="row">
-			<nav class="navbar navbar-light bg-light">
-				<div class="col-md-8">
-					<form class="form-inline my-2 my-lg-0 float-right">
-						<input class="form-control mr-sm-2" type="search" placeholder="Buscar producto" aria-label="Search">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-					</form>
-				</div>
-				<div class="col-md-4">
-					<a class="navbar-brand" href="/login" ng-if="user===null">Iniciar sesión</a>
-					<a class="navbar-brand" href="/profile" ng-if="user!==null">{{user.name | uppercase}}</a>
-					<a class="navbar-brand" ng-if="user!==null">
-						<button type="button" ng-click="logout()">
-							<small>CERRAR SESION</small>
-						</button>
-					</a>
-				</div>
-			</nav>
-		</div>
+	<body ng-controller="listadoCtrl" ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; products=<%=JSON.stringify(products)%>;">
+		<nav class="navbar navbar-light bg-light">
+			<div class="col-md-5">
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="search" placeholder="Buscar producto" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+				</form>
+			</div>
+			<div class="col-md-4 offset-md-3">
+				<a class="navbar-brand" href="/login" ng-if="user===null">Iniciar sesión</a>
+				<a class="navbar-brand" href="/profile" ng-if="user!==null">{{user.name | uppercase}}</a>
+				<a class="navbar-brand" ng-if="user!==null">
+					<button type="button" ng-click="logout()">
+						<small>CERRAR SESION</small>
+					</button>
+				</a>
+			</div>
+		</nav>
 
-		<div class="row">
-			<div class="col-xs-12 col-md-6" ng-repeat="product in products">
-				<div class="prod-info-main prod-wrap clearfix">
-					<div class="row">
-						<div class="col-md-5 col-sm-12 col-xs-12">
-							<div class="product-image"> 
-								<img src="images/products/{{product.image}}" alt="194x228" class="img-responsive"> 
-								<span class="tag2 sale">
-									{{product.tag | uppercase}}
-								</span>
-							</div>
-						</div>
-						<div class="col-md-7 col-sm-12 col-xs-12">
-							<div class="product-deatil">
-								<h5 class="name">
-									<a href="#" class="prod-title">
-										{{product.name}} <span ng-repeat="category in product.categories">{{category | uppercase}}</span>
-									</a>
-								</h5>
-								<p class="price-container">
-									<span>${{product.price}}</span>
-								</p>
-								<span class="tag1"></span> 
-							</div>
-							<div class="description">
-								<p>{{product.price}}</p>
-							</div>
-							<div class="product-info smart-form">
-								<div class="row">
-									<div class="col-md-12"> 
-										<a href="javascript:void(0);" class="btn btn-danger">Comprar</a>
-										<a href="javascript:void(0);" class="btn btn-info">Info</a>
-									</div>
-								</div>
-							</div>
-						</div>
+		<div class="row mt-md-3 mb-md-3">
+			<div class="card-columns">
+				<div class="card" ng-repeat="product in products">
+					<img class="card-img-top" src="images/products/{{product.image}}" alt="Card image cap">
+					
+					<div class="card-body">
+						<h5 class="card-title text-info">{{product.name}}</h5>
+						<p class="card-text text-success">$ {{product.price}}</p>
+						<p class="card-text">{{product.description}}</p>
+						<p class="card-text"><small class="text-muted">{{product.tag | uppercase}}</small></p>
+						<button type="button" class="btn btn-outline-danger">Comprar</button>
+						<button type="button" class="btn btn-outline-info">Info</button>
 					</div>
 				</div>
 			</div>

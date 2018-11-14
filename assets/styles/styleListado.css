@@ -3,6 +3,10 @@ body{
 	background:#d6ead6;
 }
 
+img.crop {
+	object-fit: cover;
+}
+
 .footer {
 	position: relative;
 	bottom: 0;

@@ -1,4 +1,4 @@
-app.controller('loginController', ($scope, toastr, $http, $window) => {
+app.controller('loginCtrl', ($scope, toastr, $http, $window) => {
     $scope.verify = () => {
         if (!$scope.account || !$scope.password) {
             toastr.error('Usuario o contraseña incorrecta', 'Error');
