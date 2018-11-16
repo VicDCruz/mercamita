@@ -28,8 +28,13 @@ module.exports = {
     return res.json(output);
   },
 
-  read: (req, res) => {
-
+  read: async (req, res) => {
+    let parameters = req.allParams();
+    let product = await Product.findOne({id: parameters.id});
+    Product.update({id: product.id})
+      .set({views: product.views + 1})
+      .exec((err, res) => {});
+    return res.view('product/read');
   },
 
   update: (req, res) => {
