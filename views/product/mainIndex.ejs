@@ -3,7 +3,7 @@
 	<head>
 	</head>
 
-	<body ng-controller="listadoCtrl" ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; products=<%=JSON.stringify(products)%>;">
+	<body ng-controller="listadoCtrl" ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; newestProducts=<%=JSON.stringify(newestProducts)%>; mostVisitedProducts=<%=JSON.stringify(mostVisitedProducts)%>;">
 		<nav class="navbar navbar-light bg-light">
 			<div class="col-md-5">
 				<form class="form-inline my-2 my-lg-0">
@@ -22,9 +22,10 @@
 			</div>
 		</nav>
 
-		<div class="row mt-md-3 mb-md-3">
+		<div class="row mt-md-3 mb-md-3 mr-md-3 ml-md-3">
+			<h1>Lo + nuevo</h1>
 			<div class="card-columns">
-				<div class="card" ng-repeat="product in products">
+				<div class="card p-3" ng-repeat="product in newestProducts">
 					<img class="card-img-top" src="images/products/{{product.image}}" alt="Card image cap">
 					
 					<div class="card-body">
@@ -32,8 +33,26 @@
 						<p class="card-text text-success">$ {{product.price}}</p>
 						<p class="card-text">{{product.description}}</p>
 						<p class="card-text"><small class="text-muted">{{product.tag | uppercase}}</small></p>
-						<button type="button" class="btn btn-outline-danger">Comprar</button>
-						<button type="button" class="btn btn-outline-info">Info</button>
+						<a role="button" class="btn btn-outline-danger" href="http://www.google.com">Comprar</a>
+						<a role="button" class="btn btn-outline-info" href="http://www.google.com">Información</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mt-md-3 mb-md-3 mr-md-3 ml-md-3">
+			<h1>Lo + visitado</h1>
+			<div class="card-columns">
+				<div class="card p-3" ng-repeat="product in mostVisitedProducts">
+					<img class="card-img-top" src="images/products/{{product.image}}" alt="Card image cap">
+					
+					<div class="card-body">
+						<h5 class="card-title text-info">{{product.name}}</h5>
+						<p class="card-text text-success">$ {{product.price}}</p>
+						<p class="card-text">{{product.description}}</p>
+						<p class="card-text"><small class="text-muted">{{product.tag | uppercase}}</small></p>
+						<a role="button" class="btn btn-outline-danger" href="http://www.google.com">Comprar</a>
+						<a role="button" class="btn btn-outline-info" href="http://www.google.com">Información</a>
 					</div>
 				</div>
 			</div>
