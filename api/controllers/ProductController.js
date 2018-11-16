@@ -29,12 +29,14 @@ module.exports = {
   },
 
   read: async (req, res) => {
+    let output = {};
     let parameters = req.allParams();
     let product = await Product.findOne({id: parameters.id});
+    output.product = product;
     Product.update({id: product.id})
       .set({views: product.views + 1})
       .exec((err, res) => {});
-    return res.view('product/read');
+    return res.view('product/read', output);
   },
 
   update: (req, res) => {
