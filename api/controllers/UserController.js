@@ -87,5 +87,15 @@ module.exports = {
     req.session.user = null;
     return res.ok();
   },
+  getInfo: async function(req, res) {
+    var output = {};
+    var parameters = req.allParams();
+    if (parameters.id) {
+      var user = await User.findOne({ id: parameters.id })
+      output.user = user;
+      return res.view('user/userInfo', output);
+    }
+    return res.serverError('No seas burro');
+  }
 };
 

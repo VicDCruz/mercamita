@@ -44,6 +44,7 @@ module.exports.routes = {
   'PUT /users/:id': 'UserController.update',
   'DELETE /users/:id': 'UserController.delete',
   'GET /users/verify': 'UserController.verify',
+  'GET /users/info/:id': 'UserController.getInfo',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
