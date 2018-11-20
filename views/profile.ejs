@@ -20,7 +20,7 @@ For more information, see:
     }
 </script>
 
-<div ng-controller='profileController' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init()">
+<div ng-controller='profileController' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); prods=[]; getProductos(); prodModal={}">
     <div class="row perfil">
         <div class="col-md-12">
             <div class="row">
@@ -77,9 +77,7 @@ For more information, see:
                             <div class="contProd">
                                 <h3>Lista de productos publicados</h3>
                                 <div class="list-group" id="prodPub">
-                                    <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProd">Audífonos Negros</button>
-                                    <button type="button" class="list-group-item">Laptop cool</button>
-                                    <button type="button" class="list-group-item">Celular aún más cool</button>
+                                    <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProd" ng-repeat="p in prods" ng-click="cambiaProdModal(p)">{{p.name}}</button>
                                 </div>
                                 <div>
                                     <button type="button" class="btn btn-success right">Editar productos publicados</button>
@@ -104,7 +102,7 @@ For more information, see:
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h2 class="modal-title">Audífonos Negros</h2>
+                                <h2 class="modal-title">{{prodModal.name}}</h2>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -114,13 +112,12 @@ For more information, see:
                             <div class="modal-body">
                                 <div class="col-md-12">
                                     <div class="col-md-6">
-                                         <img src="https://store.storeimages.cdn-apple.com/4981/as-images.apple.com/is/image/AppleInc/aos/published/images/M/HA/MHA22/MHA22?wid=572&hei=572&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1465862227050" class="imgProd" alt="avatar"> 
+                                         <img src="images/products/{{prodModal.image}}" class="imgProd" alt="avatar"> 
                                     </div>
                                     <div class="col-md-6 txtCent">
-                                        <h3>Excelente estado</h3> 
-                                        <h4><b> Categoria: </b> Tecnología</h4><br>
-                                        <h4>Precio a tratar</h4><br>
-                                        <span><b> $5000 </b></span>
+                                        <h3>{{prodModal.description}}</h3> 
+                                        <h4><b> Categorias: </b> {{prodModal.categories | toString}}</h4><br>
+                                        <span><b> ${{prodModal.price}}</b></span>
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +140,7 @@ For more information, see:
 
 <style>
     /* body{
-        /* height: 100%; */
+        /* height: 100%; 
         background-color: #d6ead6 ;
         width: 100%;
     } */
@@ -211,6 +208,7 @@ For more information, see:
     }
     .modal-content{
         width: 100%;
+        height: 430px;
     }
     .modal-header{
         display: -webkit-box;

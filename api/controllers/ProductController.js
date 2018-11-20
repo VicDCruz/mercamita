@@ -58,5 +58,23 @@ module.exports = {
       return res.json(output);
     });
   },
+  verify: (req,res) => {
+    console.log(req.param('id'));
+    var id = req.param('id');
+    var output = {
+      status: 200,
+      description: "OK"
+    };
+    var prod = Product.findOne({
+      _id: id
+    }).exec((err, product) => {
+      if (err || !product) {
+        output.status = 500;
+        output.description = "Internal Server Error";
+      }
+      
+      return res.json(prod);
+    });
+  }
 };
 
