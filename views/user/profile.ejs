@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
 	<head>
-        <script type="text/javascript">
-            function wishL(){
-                var stat = document.getElementById('wL').style.display;
-                if(stat == "none"){
-                    document.getElementById("wL").style.display = "block";
-                }else{
-                    document.getElementById("wL").style.display = "none";
-                }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript">
+        function wishL(){
+            var stat = document.getElementById('wL').style.display;
+            if(stat == "none"){
+                document.getElementById("wL").style.display = "block";
+            }else{
+                document.getElementById("wL").style.display = "none";
             }
-        </script>
+        }
+    </script>
     </head>
     <body>
         <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init()">
@@ -46,19 +50,19 @@
                                     </div>
                                     <div class="col-md-1 offset-md-3">
                                         <button type="button" class="btn btn-success">Editar información personal</button>
-                                    </div>                            
+                                    </div>
                                 </div>
-                                
+
                                 <div class="col-md-4 secIzq">
                                     <img src="images/{{user.profile}}" class="avatar img-circle img-thumbnail" alt="avatar">
                                     <div class="spacer"></div>
                                     <button type="button" class="btn btn-success">Selecciona otra imagen</button>
                                     <div class="spacer"></div>
                                     <div class="spacer"></div>
-                                    
+
                                     <p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>{{user.telephone}}</p>
                                     <p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{user.email}}</p>
-                                    
+
                                     <button type="button" class="btn btn-WL list-group-item active" onclick="wishL()">Lista de deseos</button>
                                     <div class="list-group" id="wL" style="display: none;">
                                         <button type="button" class="list-group-item">Cras justo odio</button>
@@ -95,7 +99,7 @@
                                     </div>
                                 </div>
                         </div>
-                        
+
                         <div class="modal fade" id="modalProd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -104,16 +108,16 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
-                                        
-                                        
+
+
                                     </div>
                                     <div class="modal-body">
                                         <div class="col-md-12">
                                             <div class="col-md-6">
-                                                <img src="https://store.storeimages.cdn-apple.com/4981/as-images.apple.com/is/image/AppleInc/aos/published/images/M/HA/MHA22/MHA22?wid=572&hei=572&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1465862227050" class="imgProd" alt="avatar"> 
+                                                <img src="https://store.storeimages.cdn-apple.com/4981/as-images.apple.com/is/image/AppleInc/aos/published/images/M/HA/MHA22/MHA22?wid=572&hei=572&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1465862227050" class="imgProd" alt="avatar">
                                             </div>
                                             <div class="col-md-6 txtCent">
-                                                <h3>Excelente estado</h3> 
+                                                <h3>Excelente estado</h3>
                                                 <h4><b> Categoria: </b> Tecnología</h4><br>
                                                 <h4>Precio a tratar</h4><br>
                                                 <span><b> $5000 </b></span>
@@ -122,17 +126,17 @@
                                     </div>
                                 </div>
                             </div>
-                                    
+
                             <div class="foot">
-                
+
                             </div>
-                        
+
                     </div>
                     <div class="foot">
 
                     </div>
                 </div>
-                    
+
             </div>
         </div>
 
@@ -175,7 +179,7 @@
                 background-color: transparent;
                 color: #268c2d;
                 font-size: 15px;
-            
+
             }
             .secIzq{
                 text-align: center;
@@ -213,7 +217,7 @@
             .modal-title{
                 width: 95%;
             }
-            
+
             .modal-dialog-centered{
                 width: 60% !important;
                 display: -webkit-box;
