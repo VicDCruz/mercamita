@@ -13,9 +13,11 @@
 			</div>
 			<div class="col-md-4 offset-md-3">
 				<a class="navbar-brand" href="/login" ng-if="user===null">Iniciar sesión</a>
-				<a class="navbar-brand" href="/profile" ng-if="user!==null">{{user.name | uppercase}}</a>
 				<a class="navbar-brand" ng-if="user!==null">
-					<button type="button" ng-click="logout()">
+					<a class="btn btn-light" href="/profile">
+							<small>{{user.name | uppercase}}</small>
+					</a>
+					<button type="button" class="btn btn-info" ng-click="logout()">
 						<small>CERRAR SESION</small>
 					</button>
 				</a>
