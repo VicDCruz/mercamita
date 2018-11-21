@@ -7,24 +7,34 @@
 
 module.exports = {
   index: async (req, res) => {
-    products = await Product.find();
-    return res.view('listado', {products: products});
+    output = {};
+    newestProducts = await Product.find({
+      sort: 'createdAt DESC',
+      limit: 3
+    });
+    mostVisitedProducts = await Product.find({
+      sort: 'views',
+      limit: 3
+    });
+    output.newestProducts = newestProducts;
+    output.mostVisitedProducts = mostVisitedProducts;
+    return res.view('product/mainIndex', output);
   },
-  create: (req, res) => {
+  create: async (req, res) => {
     var output = {
       status: 200,
       description: "OK"
     };
-    let keys = Object.keys(Product.attributes);
-    for (const key in req.allParams()) {
-      if (!keys.includes(key)) {
-        output.status = 500;
-        output.description = "Internal Server Error";
-        return res.json(output);
-      }
+    let parameters = req.allParams();
+    let keys = Object.keys(parameters);
+    if (!Product.areValidParameters(keys)) {
+      output.status = 500;
+      output.description = "Internal Server Error";
+      return res.json(output);
     }
-    newProduct = Product.create(req.allParams()).fetch();
+    newProduct = await Product.create(parameters).fetch();
     console.log(newProduct);
+    
     return res.json(output);
   },
 

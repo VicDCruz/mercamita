@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body ng-controller="loginCtrl">
+	<div class="container">
+		<div class="row">
+			<div class="offset-md-2 col-md-8">
+				<div class="row bg-light">
+					<div class="col-md-6 ml-md-3 mt-md-5 mb-md-5 d-none d-sm-block d-sm-none d-md-block">
+						<img src="/images/login.jpg" class="img-responsive img-fluid">
+					</div>
+					<div class="col-md-5 mt-md-5 mb-md-5 bg-white my-auto" style="display: flex">
+						<div class="align-items-center my-auto" style="vertical-align:center">
+							<h1>Iniciar sesión<h1>
+							<div class="form-group">
+								<input id="account" class="form-control" type="text" name="account" placeholder="# CUENTA" ng-model="account" required>
+								<input class="form-control" type="password" name="password" placeholder="CONTRASEÑA" ng-model="password" required>
+								<button type="button" class="btn btn-primary" ng-click="verify()">
+									ENTRAR
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+		
