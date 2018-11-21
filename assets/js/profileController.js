@@ -30,17 +30,4 @@ app.controller('profileController', ($scope, toastr, $http, $window) => {
     };
 });
 
-app.filter('toString', function() {
-    return function(x) {
-        var i, c, txt = "";
-        for (i = 0; i < x.length; i++) {
-            c = x[i];
-            if (i % 2 == 0) {
-            
-            }
-            txt += c;
-        }
-        return txt;
-    };
-});
 
