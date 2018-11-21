@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+
+	<body ng-controller="listadoCtrl" ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; newestProducts=<%=JSON.stringify(newestProducts)%>; mostVisitedProducts=<%=JSON.stringify(mostVisitedProducts)%>;">
+		<nav class="navbar navbar-light bg-light">
+			<div class="col-md-5">
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="search" placeholder="Buscar producto" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+				</form>
+			</div>
+			<div class="col-md-4 offset-md-3">
+				<a class="navbar-brand" href="/login" ng-if="user===null">Iniciar sesión</a>
+				<a class="navbar-brand" ng-if="user!==null">
+					<a class="btn btn-light" href="/profile">
+							<small>{{user.name | uppercase}}</small>
+					</a>
+					<button type="button" class="btn btn-info" ng-click="logout()">
+						<small>CERRAR SESION</small>
+					</button>
+				</a>
+			</div>
+		</nav>
+
+		<div class="row mt-md-3 mb-md-3 mr-md-3 ml-md-3">
+			<h1>Lo + nuevo</h1>
+			<div class="card-columns">
+				<div class="card p-3" ng-repeat="product in newestProducts">
+					<img class="card-img-top" src="images/products/{{product.image}}" alt="Card image cap">
+					
+					<div class="card-body">
+						<h5 class="card-title text-info">{{product.name}}</h5>
+						<p class="card-text text-success">$ {{product.price}}</p>
+						<p class="card-text">{{product.description}}</p>
+						<p class="card-text"><small class="text-muted">{{product.tag | uppercase}}</small></p>
+						<a role="button" class="btn btn-outline-danger" href="http://www.google.com">Comprar</a>
+						<a role="button" class="btn btn-outline-info" href="http://www.google.com">Información</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mt-md-3 mb-md-3 mr-md-3 ml-md-3">
+			<h1>Lo + visitado</h1>
+			<div class="card-columns">
+				<div class="card p-3" ng-repeat="product in mostVisitedProducts">
+					<img class="card-img-top" src="images/products/{{product.image}}" alt="Card image cap">
+					
+					<div class="card-body">
+						<h5 class="card-title text-info">{{product.name}}</h5>
+						<p class="card-text text-success">$ {{product.price}}</p>
+						<p class="card-text">{{product.description}}</p>
+						<p class="card-text"><small class="text-muted">{{product.tag | uppercase}}</small></p>
+						<a role="button" class="btn btn-outline-danger" href="http://www.google.com">Comprar</a>
+						<a role="button" class="btn btn-outline-info" href="http://www.google.com">Información</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer class="footer">
+			<div class="container">
+				<p class="text-muted">Un producto de Skynet, desarrollado exclusivamente para el ITAM.</p>
+			</div>
+		</footer>
+	</body>
+</html>

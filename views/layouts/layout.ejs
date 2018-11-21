@@ -30,29 +30,26 @@
 
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/importer.css">
-    <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/styleListado.css">
-    <link rel="stylesheet" href="/styles/util.css">
     <!--STYLES END-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
     <link rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-		<!--Uso de acentos-->
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
 
   <body ng-app="main">
     <div class="row" style="margin-left:0; margin-right:0; padding-right:0; padding-left:0">
-      <div class="logo-zone center-block">
+      <div class="logo-zone rounded mx-auto d-block">
         <a href="/">
           <img src="/images/logos/mercamita_logo.png" alt="Mercamita" class="img-responsive center-block center" h>
         </a>
       </div>
     </div>
-    <div class="container">
+    <div class="container" style="max-resolution: bottom 10px;">
       <%- body %>
     </div>
 
@@ -126,10 +123,9 @@
     <!--SCRIPTS-->
     <script src="/dependencies/sails.io.js"></script>
     <script src="/js/layout.js"></script>
-    <script src="/js/listadoController.js"></script>
-    <script src="/js/loginController.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/profileController.js"></script>
+    <script src="/js/listadoCtrl.js"></script>
+    <script src="/js/loginCtrl.js"></script>
+    <script src="/js/profileCtrl.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>
