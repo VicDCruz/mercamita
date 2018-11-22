@@ -46,6 +46,16 @@ module.exports = {
     seller: {
       type: 'string',
       required: true
+    },
+    statusSold: {
+      type: 'number',
+      required: true,
+      defaultsTo: 0 
+    },
+    type: {
+      type: 'string',
+      required: true,
+      defaultsTo: "Producto"
     }
   },
 
