@@ -26,10 +26,10 @@ module.exports.routes = {
 
   'GET /': 'ProductController.index',
   '/profile': {
-    view: 'profile'
+    view: 'user/profile'
   },
   'GET /login': {
-    view: 'login'
+    view: 'user/login'
   },
   'GET /logout': 'UserController.logout',
   // === PRODUCTS ===

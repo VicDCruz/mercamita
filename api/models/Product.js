@@ -31,6 +31,10 @@ module.exports = {
       type: 'json',
       required: false
     },
+    tag: {
+      type: 'string',
+      required: false
+    },
     images: {
       type: 'json',
       required: false
@@ -44,6 +48,19 @@ module.exports = {
       required: true
     }
   },
+
+  areValidParameters: (keys) => {
+    if (!keys) {
+      return false;
+    }
+    for (const key in Product.attributes) {
+      if (Product.attributes.hasOwnProperty(key) 
+          && Product.attributes[key].required && !keys.includes(key)) {
+        return false;
+      }
+    }
+    return true;
+  }
 
 };
 
