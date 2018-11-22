@@ -49,12 +49,10 @@ module.exports = {
     },
     statusSold: {
       type: 'number',
-      required: true,
       defaultsTo: 0 
     },
     type: {
       type: 'string',
-      required: true,
       defaultsTo: "Producto"
     }
   },

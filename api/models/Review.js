@@ -10,13 +10,11 @@ module.exports = {
   attributes: {
     comment: {
       type: 'string',
-      required: false,
       defaultsTo: 'NO COMMENTARY'
     },
     numStars: {
       type: 'number',
       columnType: 'float',
-      required: true,
       defaultsTo: 5.0
     },
     id_reviewer: {
