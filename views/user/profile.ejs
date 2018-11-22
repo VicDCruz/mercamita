@@ -58,6 +58,12 @@
                                     <div class="spacer"></div>
                                     <button type="button" class="btn btn-success">Selecciona otra imagen</button>
                                     <div class="spacer"></div>
+                                    <div ng-controller="imgCtrl"> 
+                                        <!-- <input type = "file" file-model = "myFile" /> -->
+                                        <input   type="file" id="fileUp" accept="image/jpg, image/jpeg, image/png" multiple  />
+                                        <button ng-click='verificaCantImgs("profile")'>CLICK</button>
+                                        <!-- <button ng-click = "uploadFile()">upload me</button> -->
+                                     </div>
                                     <div class="spacer"></div>
 
                                     <p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>{{user.telephone}}</p>

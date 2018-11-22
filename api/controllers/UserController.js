@@ -87,5 +87,14 @@ module.exports = {
     req.session.user = null;
     return res.ok();
   },
+  uploadImg: (req,res) => {
+    User.findOne(req.param('id')).exec(function (err, user){
+      if (err) return res.serverError(err);
+      if (!user) return res.notFound();
+      
+
+      return res.json(req.Object)
+    })
+  },
 };
 
