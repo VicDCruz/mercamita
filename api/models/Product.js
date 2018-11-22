@@ -31,8 +31,8 @@ module.exports = {
       type: 'json',
       required: false
     },
-    image: {
-      type: 'string',
+    images: {
+      type: 'json',
       required: false
     },
     buyer: {
