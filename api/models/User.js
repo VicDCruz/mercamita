@@ -39,6 +39,11 @@ module.exports = {
       type: 'ref',
       columnType: 'array',
       required: false
+    },
+    profile: {
+      type: 'ref',
+      columnType: 'binary',
+      required: false
     }
   },
 

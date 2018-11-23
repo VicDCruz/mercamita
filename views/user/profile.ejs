@@ -14,10 +14,19 @@
                 document.getElementById("wL").style.display = "none";
             }
         }
+        function subeImg(){
+            var stat = document.getElementById('upImg').style.display;
+            if(stat == "none"){
+                document.getElementById("upImg").style.display = "block";
+            }else{
+                document.getElementById("upImg").style.display = "none";
+            }
+        }
     </script>
     </head>
     <body>
-        <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); prods=[]; getProductos(); prodModal={}">
+        <iframe name="hiddenFrame" class="hide"></iframe>
+        <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init()">
             <nav class="navbar navbar-light bg-light">
                 <div class="col-md-5">
                     <form class="form-inline my-2 my-lg-0">
@@ -54,10 +63,17 @@
                                 </div>
 
                                 <div class="col-md-4 secIzq">
-                                    <img src="/images/{{user.profile}}" class="avatar img-circle img-thumbnail" alt="profile">
+                                    <img src="/images/users/{{user.profile}}" class="avatar img-circle img-thumbnail" alt="avatar">
                                     <div class="spacer"></div>
-                                    <button type="button" class="btn btn-success">Selecciona otra imagen</button>
+                                    <button type="button" class="btn btn-success" onclick="subeImg()">Selecciona otra imagen</button>
                                     <div class="spacer"></div>
+                                    <div id="upImg" ng-controller="imgCtrl" style="display:none;"> 
+                                        <form action="http://localhost:1337/profile?tipo=profile" enctype="multipart/form-data" method="post" >
+                                            <input   type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" multiple  />
+                                            <input type="submit" value="Upload" ng-click="msgRefreca()">
+                                            
+                                        </form>
+                                     </div>
                                     <div class="spacer"></div>
 
                                     <p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>{{user.telephone}}</p>
