@@ -24,7 +24,7 @@
         }
     </script>
     </head>
-    <body>
+    <body class="mb-5">
         <iframe name="hiddenFrame" class="hide"></iframe>
         <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init()">
             <nav class="navbar navbar-light bg-light">

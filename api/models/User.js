@@ -40,11 +40,11 @@ module.exports = {
       columnType: 'array',
       required: false
     },
-    profile: {
-      type: 'ref',
-      columnType: 'binary',
-      required: false
-    }
+    // profile: {
+    //   type: 'ref',
+    //   columnType: 'binary',
+    //   required: false
+    // }
   },
 
 };

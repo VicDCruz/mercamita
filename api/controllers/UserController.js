@@ -115,7 +115,7 @@ module.exports = {
     var nameImg =req.session.user.id + req.param('tipo')+'.jpg'
     req.file('avatar').upload({
       // don't allow the total upload size to exceed ~10MB
-      maxBytes: 1000000,
+      maxBytes: 10000000,
       dirname: require('path').resolve(sails.config.appPath, pathImg),
       saveAs: nameImg
     },async function whenDone(err, uploadedFiles) {
