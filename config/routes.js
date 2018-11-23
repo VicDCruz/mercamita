@@ -43,6 +43,9 @@ module.exports.routes = {
 
   // === USERS ===
   'POST /users/new': 'UserController.create',
+  'GET /users/create': {
+    view: 'user/create'
+  },
   'GET /users/:id': 'UserController.read',
   'PUT /users/:id': 'UserController.update',
   'POST /profile': 'UserController.uploadAvatar',
