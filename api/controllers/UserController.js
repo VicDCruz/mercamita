@@ -105,7 +105,7 @@ module.exports = {
     var nameImg =req.session.user.id + req.param('tipo')+'.jpg'
     req.file('avatar').upload({
       // don't allow the total upload size to exceed ~10MB
-      maxBytes: 10000000,
+      maxBytes: 1000000,
       dirname: require('path').resolve(sails.config.appPath, pathImg),
       saveAs: nameImg
     },async function whenDone(err, uploadedFiles) {
@@ -124,14 +124,13 @@ module.exports = {
       /* sails.log(req.session.user.id) */
       // Save the "fd" and the url where the avatar for a user can be accessed
       await User.update(req.session.user.id, {
-
-        profile:nameImg
-        
-      })
+        profile: nameImg
+      });
+      req.session.user.profile = nameImg;
       if (err) return res.serverError(err);
+      return res.view('user/profile');
     });
       /* sails.log(req.session.user) */
-      return  res.location('/profile')
       
   
 },
