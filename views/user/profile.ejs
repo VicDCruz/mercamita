@@ -14,6 +14,14 @@
                 document.getElementById("wL").style.display = "none";
             }
         }
+        function subeImg(){
+            var stat = document.getElementById('upImg').style.display;
+            if(stat == "none"){
+                document.getElementById("upImg").style.display = "block";
+            }else{
+                document.getElementById("upImg").style.display = "none";
+            }
+        }
     </script>
     </head>
     <body>
@@ -57,17 +65,14 @@
                                 <div class="col-md-4 secIzq">
                                     <img src="images/users/{{user.profile}}" class="avatar img-circle img-thumbnail" alt="avatar">
                                     <div class="spacer"></div>
-                                    <button type="button" class="btn btn-success">Selecciona otra imagen</button>
+                                    <button type="button" class="btn btn-success" onclick="subeImg()">Selecciona otra imagen</button>
                                     <div class="spacer"></div>
-                                    <div ng-controller="imgCtrl"> 
-                                        <!-- <input type = "file" file-model = "myFile" /> -->
+                                    <div id="upImg" ng-controller="imgCtrl" style="display:none;"> 
                                         <form action="http://localhost:1337/profile?tipo=profile" enctype="multipart/form-data" method="post" >
                                             <input   type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" multiple  />
-                                            <input type="submit" value="Upload" ng-click="refresh()">
+                                            <input type="submit" value="Upload" ng-click="msgRefreca()">
                                             
                                         </form>
-                                        <!-- <button ng-click='verificaCantImgs("profile")'>CLICK</button> -->
-                                        <!-- <button ng-click = "uploadFile()">upload me</button> -->
                                      </div>
                                     <div class="spacer"></div>
 

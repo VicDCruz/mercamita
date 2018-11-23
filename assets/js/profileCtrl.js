@@ -51,7 +51,7 @@ app.controller('imgCtrl',($scope,toastr,$http,$window) => {
 
       }
    },
-   $scope.refresh = ()=>{
+   $scope.msgRefreca = ()=>{
       toastr.info("Refresque la página para ver cambios")
    }
 });

@@ -121,7 +121,7 @@ module.exports = {
       // Get the base URL for our deployed application from our custom config
       // (e.g. this might be "http://foobar.example.com:1339" or "https://example.com")
       var baseUrl = sails.config.custom.baseUrl;
-      sails.log(req.session.user.id)
+      /* sails.log(req.session.user.id) */
       // Save the "fd" and the url where the avatar for a user can be accessed
       await User.update(req.session.user.id, {
 
@@ -130,9 +130,8 @@ module.exports = {
       })
       if (err) return res.serverError(err);
     });
-      
-        
-        /* return res.redirect('/profile') */
+      /* sails.log(req.session.user) */
+      return  res.location('/profile')
       
   
 },
