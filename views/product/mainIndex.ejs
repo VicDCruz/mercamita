@@ -17,7 +17,7 @@
 					<a class="btn btn-light" href="/profile">
 							<small>{{user.name | uppercase}}</small>
 					</a>
-					<button type="button" class="btn btn-info" ng-click="logout()">
+					<button type="button" class="btn btn-info" ng-if="!user===null" ng-click="logout()">
 						<small>CERRAR SESION</small>
 					</button>
 				</a>

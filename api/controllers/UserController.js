@@ -21,6 +21,7 @@ module.exports = {
     }
     newUser = await User.create(req.allParams()).fetch();
     console.log(newUser);
+    output.id = newUser.id;
     return res.json(output);
   },
 
