@@ -38,8 +38,24 @@ module.exports = {
     return res.json(output);
   },
 
-  read: (req, res) => {
-
+  read: async (req, res) => {
+    let output = {};
+    let parameters = req.allParams();
+    let product = await Product.findOne({id: parameters.id});
+    let seller = await User.find({
+      where: {id: product.seller},
+      select: [
+        'id',
+        'name'
+      ],
+      limit: 1
+    });
+    output.product = product;
+    output.seller = seller[0];
+    Product.update({id: product.id})
+      .set({views: product.views + 1})
+      .exec((err, res) => {});
+    return res.view('product/read', output);
   },
 
   update: (req, res) => {
