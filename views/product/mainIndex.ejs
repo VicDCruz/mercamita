@@ -17,7 +17,7 @@
 					<a class="btn btn-light" href="/profile">
 							<small>{{user.name | uppercase}}</small>
 					</a>
-					<button type="button" class="btn btn-info" ng-click="logout()">
+					<button type="button" class="btn btn-info" ng-if="!user===null" ng-click="logout()">
 						<small>CERRAR SESION</small>
 					</button>
 				</a>
@@ -28,7 +28,7 @@
 			<h1>Lo + nuevo</h1>
 			<div class="card-columns">
 				<div class="card p-3" ng-repeat="product in newestProducts">
-					<img class="card-img-top" src="images/products/{{product.images}}" alt="Card image cap">
+					<img class="card-img-top" src="images/products/{{product.images[0]}}" alt="Card image cap">
 					
 					<div class="card-body">
 						<h5 class="card-title text-info">{{product.name}}</h5>
@@ -46,7 +46,7 @@
 			<h1>Lo + visitado</h1>
 			<div class="card-columns">
 				<div class="card p-3 mb-4" ng-repeat="product in mostVisitedProducts">
-					<img class="card-img-top" src="images/products/{{product.images}}" alt="Card image cap">
+					<img class="card-img-top" src="images/products/{{product.images[0]}}" alt="Card image cap">
 					
 					<div class="card-body">
 						<h5 class="card-title text-info">{{product.name}}</h5>

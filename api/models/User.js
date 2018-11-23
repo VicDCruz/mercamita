@@ -30,6 +30,11 @@ module.exports = {
       type: 'number',
       required: false,
     },
+    profile: {
+      type: 'string',
+      required: false,
+      defaultsTo: 'profileBasic.jpg'
+    },
     products: {
       type: 'ref',
       columnType: 'array',

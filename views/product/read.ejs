@@ -30,7 +30,8 @@
                     </ul> -->
 
                     <ul class="carousel-indicators">
-                        <li ng-repeat="image in product.images" data-target="#demo" data-slide-to="{{$index}}" class="active"></li>
+                        <li ng-repeat="image in product.images" data-target="#demo" data-slide-to="{{$index}}" class="active" ng-if="$index == 0"></li>
+                        <li ng-repeat="image in product.images" data-target="#demo" data-slide-to="{{$index}}" ng-if="$index > 0"></li>
                     </ul>
                     
                     <!-- The slideshow -->
@@ -47,8 +48,11 @@
                     </div> -->
 
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img ng-repeat="image in product.images" class="d-block w-100" src="images/products" alt="{{product.name}}">
+                        <div ng-repeat="image in product.images" class="carousel-item active" ng-if="$index == 0">
+                            <img class="d-block w-100" src="/images/products/{{image}}" alt="{{product.name}}">
+                        </div>
+                        <div ng-repeat="image in product.images" class="carousel-item" ng-if="$index > 0">
+                            <img class="d-block w-100" src="/images/products/{{image}}" alt="{{product.name}}">
                         </div>
                     </div>
 

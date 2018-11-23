@@ -13,7 +13,7 @@ module.exports = {
       limit: 3
     });
     mostVisitedProducts = await Product.find({
-      sort: 'views',
+      sort: 'views DESC',
       limit: 3
     });
     output.newestProducts = newestProducts;
@@ -53,7 +53,7 @@ module.exports = {
     output.product = product;
     output.seller = seller[0];
     Product.update({id: product.id})
-      .set({views: product.views + 1})
+      .set({views: ((product.views) ? product.views : 0) + 1})
       .exec((err, res) => {});
     return res.view('product/read', output);
   },

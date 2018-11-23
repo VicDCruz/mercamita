@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body ng-controller="createUserCtrl">
+    <div class="row">
+        <div class="col-md-10 mb-5 mx-auto bg-light">
+            <h1 class="mx-auto px-auto">
+                Nueva cuenta
+            </h1>
+            <div class="mx-auto">
+                <form action="/users/new" method="post">
+                    <div class="form-group">
+                        <label for="newUser" class="col-2 col-form-label">Nombre</label>
+                        <div class="col-12">
+                            <input class="form-control" type="text" placeholder="Nombre" id="name" ng-model="user.name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newUser" class="col-2 col-form-label"># de Cuenta</label>
+                        <div class="col-12">
+                            <input class="form-control" type="text" placeholder="123456" id="account" ng-model="user.account">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newUser" class="col-2 col-form-label">Correo</label>
+                        <div class="col-12">
+                            <input class="form-control" type="text" placeholder="email@itam.mx" id="email" ng-model="user.email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newUser" class="col-2 col-form-label">Contraseña</label>
+                        <div class="col-12">
+                            <input class="form-control" type="password" id="passwordNew" ng-model="passwordNew">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newUser" class="col-2 col-form-label">Verifica la contraseña</label>
+                        <div class="col-12">
+                            <input class="form-control" type="password" id="password" ng-model="user.password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newUser" class="col-2 col-form-label">Teléfono</label>
+                        <div class="col-12">
+                            <input class="form-control" type="text" placeholder="0012345678" id="telephone" ng-model="user.telephone">
+                        </div>
+                    </div>
+                    <input type="button" class="btn btn-primary mt-3" ng-click="create(user, passwordNew)" value="Crear nueva cuenta" />
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
