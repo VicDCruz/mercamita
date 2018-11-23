@@ -40,10 +40,6 @@ module.exports = {
       columnType: 'array',
       required: false
     },
-    profile: {
-      type: 'string',
-      required: false
-    },
     wishList:{
       type: 'ref',
       columnType: 'array',

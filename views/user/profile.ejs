@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script type="text/javascript">
-            function wishL(){
-                var stat = document.getElementById('wL').style.display;
-                if(stat == "none"){
-                    document.getElementById("wL").style.display = "block";
-                }else{
-                    document.getElementById("wL").style.display = "none";
-                }
-            }
-        </script>
-    </head>
-    <body>
+   <head>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+       <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       <script type="text/javascript">
+           function wishL(){
+               var stat = document.getElementById('wL').style.display;
+               if(stat == "none"){
+                   document.getElementById("wL").style.display = "block";
+               }else{
+                   document.getElementById("wL").style.display = "none";
+               }
+           }
+           function subeImg(){
+               var stat = document.getElementById('upImg').style.display;
+               if(stat == "none"){
+                   document.getElementById("upImg").style.display = "block";
+               }else{
+                   document.getElementById("upImg").style.display = "none";
+               }
+           }
+       </script>
+   </head>
+   <body>
         <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); prods=[]; prodModal={}; prodsWL=[]; sellers=[];">
           <nav class="navbar navbar-light bg-light">
                 <div class="col-md-5">
@@ -37,7 +45,7 @@
                     </a>
                 </div>
             </nav>
-
+ 
         <div class="row perfil">
             <div class="col-md-12">
                 <div class="row">        </div>
@@ -56,18 +64,17 @@
                                     <div class="spacer"></div>
                                     <button type="button" class="btn btn-success" onclick="subeImg()">Selecciona otra imagen</button>
                                     <div class="spacer"></div>
-                                    <div id="upImg" ng-controller="imgCtrl" style="display:none;"> 
+                                    <div id="upImg" ng-controller="imgCtrl" style="display:none;">
                                         <form action="http://localhost:1337/profile?tipo=profile" enctype="multipart/form-data" method="post" >
                                             <input   type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" multiple  />
                                             <input type="submit" value="Upload" ng-click="msgRefreca()">
-                                            
+ 
                                         </form>
                                      </div>
                                     <div class="spacer"></div>
-
+ 
                             <p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>{{user.telephone}}</p>
                             <p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{user.email}}</p>
-
                             <button type="button" class="btn btn-WL list-group-item active" onclick="wishL()">Lista de deseos</button>
                             <div class="list-group" id="wL" style="display: none;">
                                 <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProdWL" ng-repeat="pr in prodsWL" ng-click="getVendedor(pr)">{{pr.name}}</button>
@@ -98,39 +105,11 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="modal fade" id="modalProd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title">{{prodModal.name}}</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="col-md-12">
-                                        <div class="col-md-6">
-                                            <img src="images/products/{{prodModal.images}}" class="imgProd" alt="avatar"> 
-                                        </div>
-                                        <div class="col-md-6 txtCent">
-                                            <h3>{{prodModal.description}}</h3> 
-                                            <h4><b> Categorias: </b></h4><h4 ng-repeat="categs in prodModal.categories"> {{categs}}</h4><br>
-                                            <span><b> ${{prodModal.price}}</b></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="foot">
-                        </div>
-                    </div>
-
-                    <div class="modal fade" id="modalProdWL" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h2 class="modal-title"><a href="products/{{prodModal.id}}">{{prodModal.name}}</a></h2>
+                                        <h2 class="modal-title">{{prodModal.name}}</h2>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -138,14 +117,12 @@
                                     <div class="modal-body">
                                         <div class="col-md-12">
                                             <div class="col-md-6">
-                                                <img src="images/products/{{prodModal.images}}" class="imgProd" alt="avatar"> 
+                                                <img src="images/products/{{prodModal.images[0]}}" class="imgProd" alt="avatar">
                                             </div>
                                             <div class="col-md-6 txtCent">
-                                                <h3>{{prodModal.description}}</h3> 
-                                                <h4><b> Categorias: </b></h4><h4 ng-repeat="categs in prodModal.categories"> {{categs}}</h4><br>
+                                                <h3>{{prodModal.description}}</h3>
+                                                <h4><b> Categorias: </b></h4><h4 ng-repeat="categs in prodModal.category"> {{categs}}</h4><br>
                                                 <span><b> ${{prodModal.price}}</b></span>
-                                                <br>
-                                                <h4><b> Vendedor: </b> {{sellers[0].name}}  </h4>  <br>
                                             </div>
                                         </div>
                                     </div>
@@ -154,114 +131,141 @@
                             <div class="foot">
                             </div>
                         </div>
-                    <div class="foot">
-
+                        <div class="modal fade" id="modalProdWL" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2 class="modal-title"><a href="products/{{prodModal.id}}">{{prodModal.name}}</a></h2>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <img src="/images/products/{{prodModal.images[0]}}" class="imgProd" alt="avatar">
+                                                </div>
+                                                <div class="col-md-6 txtCent">
+                                                    <h3>{{prodModal.description}}</h3>
+                                                    <h4><b> Categorias: </b></h4><h4 ng-repeat="categs in prodModal.category"> {{categs}}</h4><br>
+                                                    <span><b> ${{prodModal.price}}</b></span>
+                                                    <br>
+                                                    <h4><b> Vendedor: </b> {{sellers[0].name}}  </h4>  <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="foot">
+                                </div>
+                            </div>
+                        <div class="foot">
+     
+                        </div>
                     </div>
+     
                 </div>
-
             </div>
-        </div>
-
-        <style>
-            /* body{
-                background-color: #d6ead6 ;
-                width: 100%;
-            } */
-            .right {
-                position: absolute;
-                right: 15px;
-                /* border: 3px solid #73AD21; */
-                padding: 10px;
-            }
-            .avatar{
-                vertical-align: middle;
-                width: 300px;
-                height: 270px;
-                border-radius: 50%;
-            }
-            /* .cont{
-                margin-top: 5px;
-                margin-left: 5px;
-            } */
-            .contProd{
-                width: 100%;
-            }
-            .navbar{
-                background-color: transparent;
-                height: 80px;
-            }
-            .txtCent span{
-                color: #2EB32E;
-                font-family: Lato, sans-serif;
-                font-size: 24px;
-                line-height: 20px;
-            }
-            .btn-nav{
-                background-color: transparent;
-                color: #268c2d;
-                font-size: 15px;
-
-            }
-            .secIzq{
-                text-align: center;
-            }
-            .spacer{
-                height: 10px;
-            }
-            .spacer2{
-                height: 30px;
-            }
-            .btn-WL{
-                text-align: center !important;
-            }
-            .btn-Mod{
-                text-align: center !important;
-                color: #fff !important;
-                background-color: #5cb85c;
-                border-color: #4cae4c;
-            }
-            .btn-Mod:hover{
-                color: #fff !important;
-                background-color: #449d44 !important;
-                border-color: #398439;
-            }
-            .imgProd{
-                width: 300px;
-                height: 300px;
-            }
-            .modal-content{
-                width: 750px !important;
-            }
-
-            .modal-dialog{
-                max-width: 800px;
-            }
-            .modal-header{
-                display: -webkit-box;
-            }
-            .modal-title{
-                width: 95%;
-            }
-
-            .modal-dialog-centered{
-                width: 60% !important;
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                align-items: center;
-                min-height: calc(100% - (.5rem * 2));
-                width: 200px;
-            }
-            .txtCent{
-                padding: 70px 0;
-            }
-            /*
-            .secDer{
-                background-color: #77C9D4;
-            } */
-        </style>
+            <style>
+                    /* body{
+                        background-color: #d6ead6 ;
+                        width: 100%;
+                    } */
+                    .right {
+                        position: absolute;
+                        right: 15px;
+                        /* border: 3px solid #73AD21; */
+                        padding: 10px;
+                    }
+                    .avatar{
+                        vertical-align: middle;
+                        width: 300px;
+                        height: 270px;
+                        border-radius: 50%;
+                    }
+                    /* .cont{
+                        margin-top: 5px;
+                        margin-left: 5px;
+                    } */
+                    .contProd{
+                        width: 100%;
+                    }
+                    .navbar{
+                        background-color: transparent;
+                        height: 80px;
+                    }
+                    .txtCent span{
+                        color: #2EB32E;
+                        font-family: Lato, sans-serif;
+                        font-size: 24px;
+                        line-height: 20px;
+                    }
+                    .btn-nav{
+                        background-color: transparent;
+                        color: #268c2d;
+                        font-size: 15px;
+         
+                    }
+                    .secIzq{
+                        text-align: center;
+                    }
+                    .spacer{
+                        height: 10px;
+                    }
+                    .spacer2{
+                        height: 30px;
+                    }
+                    .btn-WL{
+                        text-align: center !important;
+                    }
+                    .btn-Mod{
+                        text-align: center !important;
+                        color: #fff !important;
+                        background-color: #5cb85c;
+                        border-color: #4cae4c;
+                    }
+                    .btn-Mod:hover{
+                        color: #fff !important;
+                        background-color: #449d44 !important;
+                        border-color: #398439;
+                    }
+                    .imgProd{
+                        width: 300px;
+                        height: 300px;
+                    }
+                    .modal-content{
+                        width: 750px !important;
+                    }
+         
+                    .modal-dialog{
+                        max-width: 800px;
+                    }
+                    .modal-header{
+                        display: -webkit-box;
+                    }
+                    .modal-title{
+                        width: 95%;
+                    }
+         
+                    .modal-dialog-centered{
+                        width: 60% !important;
+                        display: -webkit-box;
+                        display: -ms-flexbox;
+                        display: flex;
+                        -webkit-box-align: center;
+                        -ms-flex-align: center;
+                        align-items: center;
+                        min-height: calc(100% - (.5rem * 2));
+                        width: 200px;
+                    }
+                    .txtCent{
+                        padding: 70px 0;
+                    }
+                    /*
+                    .secDer{
+                        background-color: #77C9D4;
+                    } */
+                </style>
     </body>
 </html>
 
