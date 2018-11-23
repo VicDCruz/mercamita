@@ -41,7 +41,7 @@ app.controller('imgCtrl',($scope,toastr,$http,$window) => {
       for(var i = 0; i < cant; i++){
          console.log("va imagen: " + (i+1))
          console.log(id)
-         $http.get('/users/avatar/'+id+'?tipo='+tipo).then(function(result) {
+         $http.get('/users/'+id+'?tipo='+tipo).then(function(result) {
             var res = result
             console.log(res)
 

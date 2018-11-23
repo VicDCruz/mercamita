@@ -60,8 +60,12 @@
                                     <div class="spacer"></div>
                                     <div ng-controller="imgCtrl"> 
                                         <!-- <input type = "file" file-model = "myFile" /> -->
-                                        <input   type="file" id="fileUp" accept="image/jpg, image/jpeg, image/png" multiple  />
-                                        <button ng-click='verificaCantImgs("profile")'>CLICK</button>
+                                        <form action="http://localhost:1337/profile?tipo=profile" enctype="multipart/form-data" method="post">
+                                            <input   type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" multiple  />
+                                            <input type="submit" value="Upload">
+                                            
+                                        </form>
+                                        <!-- <button ng-click='verificaCantImgs("profile")'>CLICK</button> -->
                                         <!-- <button ng-click = "uploadFile()">upload me</button> -->
                                      </div>
                                     <div class="spacer"></div>
