@@ -75,7 +75,10 @@ module.exports = {
     User.findOne({
       select: [
         'id',
-        'name'
+        'name',
+        'profile',
+        'email',
+        'telephone'
       ],
       where: {
         account: account,

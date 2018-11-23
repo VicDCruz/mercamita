@@ -38,6 +38,6 @@ app.controller('createUserCtrl', ($scope, toastr, $http, $window) => {
     };
     $scope.verifyParams = (user, passwordNew) => {
         return passwordNew && user && 
-            user.password === passwordNew && user.email.includes('@');
+            user.password === passwordNew && user.email.includes('@itam.mx');
     };
 })
