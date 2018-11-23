@@ -31,6 +31,9 @@ module.exports.routes = {
   'GET /login': {
     view: 'user/login'
   },
+  'GET /pruebaImg':{
+    view: 'user/pruebaImg'
+  },  
   'GET /logout': 'UserController.logout',
   // === PRODUCTS ===
   'POST /products/new': 'ProductController.create',
@@ -42,6 +45,7 @@ module.exports.routes = {
   'POST /users/new': 'UserController.create',
   'GET /users/:id': 'UserController.read',
   'PUT /users/:id': 'UserController.update',
+  'POST /profile': 'UserController.uploadAvatar',
   'DELETE /users/:id': 'UserController.delete',
   'GET /users/verify': 'UserController.verify',
   /***************************************************************************

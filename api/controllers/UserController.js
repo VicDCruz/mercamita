@@ -93,5 +93,53 @@ module.exports = {
     req.session.user = null;
     return res.ok();
   },
+  uploadImg: (req,res) => {
+    User.findOne(req.param('id')).exec(function (err, user){
+      if (err) return res.serverError(err);
+      if (!user) return res.notFound();
+      
+
+      return res.json(req.Object)
+    })
+  },
+  uploadAvatar: (req,res) => {
+
+    var pathImg = 'assets/images/users'
+    if(req.param('tipo') == 'prods'){
+      pathImg = 'assets/images/products'
+    }
+    var nameImg =req.session.user.id + req.param('tipo')+'.jpg'
+    req.file('avatar').upload({
+      // don't allow the total upload size to exceed ~10MB
+      maxBytes: 1000000,
+      dirname: require('path').resolve(sails.config.appPath, pathImg),
+      saveAs: nameImg
+    },async function whenDone(err, uploadedFiles) {
+      if (err) {
+        return res.serverError(err);
+      }
+
+      // If no files were uploaded, respond with an error.
+      if (uploadedFiles.length === 0){
+        return res.badRequest('No file was uploaded');
+      }
+
+      // Get the base URL for our deployed application from our custom config
+      // (e.g. this might be "http://foobar.example.com:1339" or "https://example.com")
+      var baseUrl = sails.config.custom.baseUrl;
+      /* sails.log(req.session.user.id) */
+      // Save the "fd" and the url where the avatar for a user can be accessed
+      await User.update(req.session.user.id, {
+        profile: nameImg
+      });
+      req.session.user.profile = nameImg;
+      if (err) return res.serverError(err);
+      return res.view('user/profile');
+    });
+      /* sails.log(req.session.user) */
+      
+  
+},
+
 };
 
