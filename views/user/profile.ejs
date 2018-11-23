@@ -17,7 +17,7 @@
         </script>
     </head>
     <body>
-        <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); prods=[]; getProductos(); prodModal={}; prodsWL=[];">
+        <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); prods=[]; getProductos(); prodModal={}; prodsWL=[]; sellers=[];">
             <nav class="navbar navbar-light bg-light">
                 <div class="col-md-5">
                     <form class="form-inline my-2 my-lg-0">
@@ -64,7 +64,7 @@
 
                             <button type="button" class="btn btn-WL list-group-item active" onclick="wishL()">Lista de deseos</button>
                             <div class="list-group" id="wL" style="display: none;">
-                                <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProd" ng-repeat="pr in prodsWL" ng-click="cambiaProdModal(pr)">{{pr.name}}</button>
+                                <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProdWL" ng-repeat="pr in prodsWL" ng-click="getVendedor(pr)">{{pr.name}}</button>
                             </div>
                         </div>
                         <div class="col-md-1"></div>
@@ -119,6 +119,35 @@
                         <div class="foot">
                         </div>
                     </div>
+
+                    <div class="modal fade" id="modalProdWL" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2 class="modal-title">{{prodModal.name}}</h2>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <img src="images/products/{{prodModal.image}}" class="imgProd" alt="avatar"> 
+                                            </div>
+                                            <div class="col-md-6 txtCent">
+                                                <h3>{{prodModal.description}}</h3> 
+                                                <h4><b> Categorias: </b></h4><h4 ng-repeat="categs in prodModal.categories"> {{categs}}</h4><br>
+                                                <span><b> ${{prodModal.price}}</b></span>
+                                                <br>
+                                                <h4><b> Vendedor: </b> {{sellers[0].name}}  </h4>  <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="foot">
+                            </div>
+                        </div>
                     <div class="foot">
 
                     </div>

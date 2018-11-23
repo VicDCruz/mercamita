@@ -42,7 +42,18 @@ app.controller('profileCtrl', ($scope, toastr, $http, $window) => {
          $scope.getWL(element)
       })
       };
-      $scope.cambiaProdModal = (p) =>{ 
+
+   $scope.cambiaProdModal = (p) =>{ 
       $scope.prodModal = p
-      };
-   });
+   };
+
+   $scope.getVendedor = (id) => {
+      $scope.prodModal = id
+      $http.get('/user?id=' + id.seller).then(function(result) {
+         var res = result.data[0]
+         $scope.sellers.push(res)
+      }).catch(function() {
+         return null
+      });
+   }
+});
