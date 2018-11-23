@@ -17,7 +17,7 @@
         </script>
     </head>
     <body>
-        <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); prods=[]; getProductos(); prodModal={}; prodsWL=[]; sellers=[];">
+        <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); prods=[]; prodModal={}; prodsWL=[]; sellers=[];">
             <nav class="navbar navbar-light bg-light">
                 <div class="col-md-5">
                     <form class="form-inline my-2 my-lg-0">
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="col-md-4 secIzq">
-                            <img src="images/{{user.profile}}" class="avatar img-circle img-thumbnail" alt="avatar">
+                            <img src="images/users/{{user.profile}}" class="avatar img-circle img-thumbnail" alt="avatar">
                             <div class="spacer"></div>
                                 <button type="button" class="btn btn-success">Selecciona otra imagen</button>
                             <div class="spacer"></div>
@@ -105,7 +105,7 @@
                                 <div class="modal-body">
                                     <div class="col-md-12">
                                         <div class="col-md-6">
-                                            <img src="images/products/{{prodModal.image}}" class="imgProd" alt="avatar"> 
+                                            <img src="images/products/{{prodModal.images}}" class="imgProd" alt="avatar"> 
                                         </div>
                                         <div class="col-md-6 txtCent">
                                             <h3>{{prodModal.description}}</h3> 
@@ -132,7 +132,7 @@
                                     <div class="modal-body">
                                         <div class="col-md-12">
                                             <div class="col-md-6">
-                                                <img src="images/products/{{prodModal.image}}" class="imgProd" alt="avatar"> 
+                                                <img src="images/products/{{prodModal.images}}" class="imgProd" alt="avatar"> 
                                             </div>
                                             <div class="col-md-6 txtCent">
                                                 <h3>{{prodModal.description}}</h3> 
@@ -214,51 +214,6 @@
                 background-color: #5cb85c;
                 border-color: #4cae4c;
             }
-            .btn-Mod:hover{
-                color: #fff !important;
-                background-color: #449d44 !important;
-                border-color: #398439;
-            }
-            .imgProd{
-                width: 300px;
-                height: 300px;
-            }
-            .modal-content{
-                width: 750px !important;
-            }
-
-            .modal-dialog{
-                max-width: 800px;
-            }
-            .modal-header{
-                display: -webkit-box;
-            }
-            .modal-title{
-                width: 95%;
-            }
-
-            .modal-dialog-centered{
-                width: 60% !important;
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                align-items: center;
-                min-height: calc(100% - (.5rem * 2));
-                width: 200px;
-            }
-            .txtCent{
-                padding: 70px 0;
-            }
-            /*
-            .secDer{
-                background-color: #77C9D4;
-            } */
-        </style>
-    </body>
-</html>
-
             .btn-Mod:hover{
                 color: #fff !important;
                 background-color: #449d44 !important;

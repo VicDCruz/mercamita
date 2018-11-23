@@ -1,19 +1,22 @@
 app.controller('profileCtrl', ($scope, toastr, $http, $window) => {
    $scope.user = null;
    $scope.init = () => {
+      $http.get('user/?id='+$scope.user.id).then(function(result) {
+         $scope.user = result.data[0]
+         $scope.getProductos()
+      })
    if (!$scope.user) $window.location.href = '/';
 };
 $scope.logout = () => {
    $http.get('/logout')
    .then((response) => {
-   toastr.success('Sesión cerrada', 'Éxito');
-   $window.location.href = '/';
+      toastr.success('Sesión cerrada', 'Éxito');
+      $window.location.href = '/';
    });
 };
 $scope.getProds = (id) =>{ 
    $http.get('/product?id=' + id).then(function(result) {
       var res = result.data[0]
-      console.log(res)
       $scope.prods.push(res)
    }).catch(function() {
       return null
@@ -22,7 +25,6 @@ $scope.getProds = (id) =>{
 $scope.getWL = (id) =>{
    $http.get('/product?id=' + id).then(function(result) {
       var res = result.data[0]
-      console.log(res)
       $scope.prodsWL.push(res)
    }).catch(function() {
       return null
@@ -31,7 +33,6 @@ $scope.getWL = (id) =>{
 $scope.getProductos = () =>{ 
    var prod = $scope.user.products
    var prodWL = $scope.user.wishList
-   console.log($scope.user)
    if(prod != undefined)
       prod.forEach(element => {
       $scope.getProds(element)
@@ -39,8 +40,8 @@ $scope.getProductos = () =>{
    
    if(prodWL != undefined)
       prodWL.forEach(element =>{
-      $scope.getWL(element)
-   })
+         $scope.getWL(element)
+      })
    };
 
 $scope.cambiaProdModal = (p) =>{ 
