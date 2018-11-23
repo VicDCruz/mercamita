@@ -48,6 +48,14 @@ module.exports = {
       type: 'ref',
       columnType: 'ObjectId',
       required: true
+    },
+    statusSold: {
+      type: 'number',
+      defaultsTo: 0 
+    },
+    type: {
+      type: 'string',
+      defaultsTo: "Producto"
     }
   },
 
