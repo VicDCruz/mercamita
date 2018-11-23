@@ -17,6 +17,7 @@
     </script>
     </head>
     <body>
+        <iframe name="hiddenFrame" class="hide"></iframe>
         <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init()">
             <nav class="navbar navbar-light bg-light">
                 <div class="col-md-5">
@@ -54,15 +55,15 @@
                                 </div>
 
                                 <div class="col-md-4 secIzq">
-                                    <img src="images/{{user.profile}}" class="avatar img-circle img-thumbnail" alt="avatar">
+                                    <img src="images/users/{{user.profile}}" class="avatar img-circle img-thumbnail" alt="avatar">
                                     <div class="spacer"></div>
                                     <button type="button" class="btn btn-success">Selecciona otra imagen</button>
                                     <div class="spacer"></div>
                                     <div ng-controller="imgCtrl"> 
                                         <!-- <input type = "file" file-model = "myFile" /> -->
-                                        <form action="http://localhost:1337/profile?tipo=profile" enctype="multipart/form-data" method="post">
+                                        <form action="http://localhost:1337/profile?tipo=profile" enctype="multipart/form-data" method="post" >
                                             <input   type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" multiple  />
-                                            <input type="submit" value="Upload">
+                                            <input type="submit" value="Upload" ng-click="refresh()">
                                             
                                         </form>
                                         <!-- <button ng-click='verificaCantImgs("profile")'>CLICK</button> -->

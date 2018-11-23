@@ -50,6 +50,9 @@ app.controller('imgCtrl',($scope,toastr,$http,$window) => {
         });
 
       }
+   },
+   $scope.refresh = ()=>{
+      toastr.info("Refresque la página para ver cambios")
    }
 });
 
