@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+  schema: true,
 
   attributes: {
     name: {
@@ -35,8 +36,8 @@ module.exports = {
       type: 'string',
       required: false
     },
-    image: {
-      type: 'string',
+    images: {
+      type: 'json',
       required: false
     },
     buyer: {

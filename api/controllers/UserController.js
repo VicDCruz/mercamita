@@ -72,8 +72,14 @@ module.exports = {
       return res.json(output);
     }
     User.findOne({
-      account: account,
-      password: password
+      select: [
+        'id',
+        'name'
+      ],
+      where: {
+        account: account,
+        password: password
+      }
     }).exec((err, user) => {
       if (err || !user) {
         output.status = 500;
