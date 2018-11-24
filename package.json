@@ -28,8 +28,10 @@
     "docker:start": "./runDocker.sh",
     "docker:dbs": "docker exec -d mercamita_dev service mongodb start",
     "docker:sails:start": "docker exec -it mercamita_dev bash -c 'cd /mercamita/ && sails lift' && docker logs -ft",
-    "docker:ssh": "docker exec -it mercamita_dev bash"
-  },
+    "docker:ssh": "docker exec -it mercamita_dev bash",
+    "docker:migration:dump": "docker exec mercamita_dev mongodump --host 3.16.164.172:2717 -u 'sky' -p 'Mercamita1' --authenticationDatabase 'admin' --out /data/backup/",
+    "docker:migration:dbs": "docker exec mercamita_dev mongorestore --host 3.16.164.172:2717 -u 'sky' -p 'Mercamita1' --authenticationDatabase 'admin' /data/backup/"
+    },
   "main": "app.js",
   "repository": {
     "type": "git",

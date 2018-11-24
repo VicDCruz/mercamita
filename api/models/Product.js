@@ -46,6 +46,14 @@ module.exports = {
     seller: {
       type: 'string',
       required: true
+    },
+    // 0 := no vendido
+    // 1 := en proceso
+    // 2 := vendido
+    status: { 
+      type: 'number',
+      columnType: 'integer',
+      required: false
     }
   },
 
