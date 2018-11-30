@@ -12,6 +12,7 @@
     "grunt": "1.0.1",
     "lodash": "^4.17.11",
     "sails": "^1.0.0",
+    "sails-hook-email": "^0.12.1",
     "sails-hook-grunt": "^3.0.2",
     "sails-hook-orm": "^2.0.0-16",
     "sails-hook-sockets": "^1.4.0",
@@ -30,7 +31,7 @@
     "docker:sails:start": "docker exec -it mercamita_dev bash -c 'cd /mercamita/ && sails lift' && docker logs -ft",
     "docker:ssh": "docker exec -it mercamita_dev bash",
     "docker:migration:dbs": "./migrationDbs.sh"
-    },
+  },
   "main": "app.js",
   "repository": {
     "type": "git",
