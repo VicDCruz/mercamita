@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    </head>
+    <body>
+        <div ng-controller = "myCtrl">
+            <input type = "file" file-model = "myFile"/>
+            <button ng-click = "uploadFile()">upload me</button>
+         </div>
+
+        <style>
+            /* body{
+                background-color: #d6ead6 ;
+                width: 100%;
+            } */
+            .right {
+                position: absolute;
+                right: 15px;
+                /* border: 3px solid #73AD21; */
+                padding: 10px;
+            }
+            .avatar{
+                vertical-align: middle;
+                width: 300px;
+                height: 270px;
+                border-radius: 50%;
+            }
+            /* .cont{
+                margin-top: 5px;
+                margin-left: 5px;
+            } */
+            .contProd{
+                width: 100%;
+            }
+            .navbar{
+                background-color: transparent;
+                height: 80px;
+            }
+            .txtCent span{
+                color: #2EB32E;
+            font-family: Lato, sans-serif;
+            font-size: 24px;
+            line-height: 20px;
+            }
+            .btn-nav{
+                background-color: transparent;
+                color: #268c2d;
+                font-size: 15px;
+
+            }
+            .secIzq{
+                text-align: center;
+            }
+            .spacer{
+                height: 10px;
+            }
+            .spacer2{
+                height: 30px;
+            }
+            .btn-WL{
+                text-align: center !important;
+            }
+            .btn-Mod{
+                text-align: center !important;
+                color: #fff !important;
+                background-color: #5cb85c;
+                border-color: #4cae4c;
+            }
+            .btn-Mod:hover{
+                color: #fff !important;
+                background-color: #449d44 !important;
+                border-color: #398439;
+            }
+            .imgProd{
+                width: 300px;
+                height: 300px;
+            }
+            .modal-content{
+                width: 100%;
+            }
+            .modal-header{
+                display: -webkit-box;
+            }
+            .modal-title{
+                width: 95%;
+            }
+
+            .modal-dialog-centered{
+                width: 60% !important;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                min-height: calc(100% - (.5rem * 2));
+                width: 200px;
+            }
+            .txtCent{
+                padding: 70px 0;
+            }
+            /*
+            .secDer{
+                background-color: #77C9D4;
+            } */
+        </style>
+    </body>
+</html>

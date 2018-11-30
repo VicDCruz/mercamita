@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+  schema: true,
 
   attributes: {
     name: {
@@ -35,7 +36,7 @@ module.exports = {
       type: 'string',
       required: false
     },
-    image: {
+    images: {
       type: 'string',
       required: false
     },
@@ -44,7 +45,8 @@ module.exports = {
       required: false
     },
     seller: {
-      type: 'string',
+      type: 'ref',
+      columnType: 'ObjectId',
       required: true
     },
     // 0 := no vendido

@@ -14,9 +14,8 @@ module.exports = {
       where: {status: 0}
     });
     mostVisitedProducts = await Product.find({
-      sort: 'views',
-      limit: 3,
-      where: {status: 0}
+      sort: 'views DESC',
+      limit: 3
     });
     output.newestProducts = newestProducts;
     output.mostVisitedProducts = mostVisitedProducts;
@@ -40,8 +39,24 @@ module.exports = {
     return res.json(output);
   },
 
-  read: (req, res) => {
-
+  read: async (req, res) => {
+    let output = {};
+    let parameters = req.allParams();
+    let product = await Product.findOne({id: parameters.id});
+    let seller = await User.find({
+      where: {id: product.seller},
+      select: [
+        'id',
+        'name'
+      ],
+      limit: 1
+    });
+    output.product = product;
+    output.seller = seller[0];
+    Product.update({id: product.id})
+      .set({views: ((product.views) ? product.views : 0) + 1})
+      .exec((err, res) => {});
+    return res.view('product/read', output);
   },
 
   update: (req, res) => {
@@ -70,5 +85,23 @@ module.exports = {
       return res.json(output);
     });
   },
+  verify: (req,res) => {
+    console.log(req.param('id'));
+    var id = req.param('id');
+    var output = {
+      status: 200,
+      description: "OK"
+    };
+    var prod = Product.findOne({
+      _id: id
+    }).exec((err, product) => {
+      if (err || !product) {
+        output.status = 500;
+        output.description = "Internal Server Error";
+      }
+      
+      return res.json(prod);
+    });
+  }
 };
 

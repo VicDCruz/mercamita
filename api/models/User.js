@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+  schema: true,
 
   attributes: {
     name: {
@@ -29,7 +30,17 @@ module.exports = {
       type: 'number',
       required: false,
     },
+    profile: {
+      type: 'string',
+      required: false,
+      defaultsTo: 'profileBasic.jpg'
+    },
     products: {
+      type: 'ref',
+      columnType: 'array',
+      required: false
+    },
+    wishList:{
       type: 'ref',
       columnType: 'array',
       required: false
