@@ -34,11 +34,31 @@ module.exports = {
     })
   },
 
-  update: (req, res) => {
+  updateWishlist: async (req, res) => {
+    var params = req.allParams();
     var output = {
       status: 200,
       description: "OK"
     };
+    if (!params.id || !params.newProduct) {
+      output.status = 404;
+      output.description = "Not found";
+    } else {
+      var user = await User.findOne({id: params.id});
+      if (!user) {
+        output.status = 500;
+        output.description = "Internal Server Error";
+      }
+      if (user.wishList == null) {
+        user.wishList = [];
+      }
+      if (!user.wishList.includes(params.newProduct)) {
+        user.wishList.push(params.newProduct);
+        User.update({id: params.id}, {wishList: user.wishList})
+          .exec(function (err, updated){});
+      }
+    }
+    return res.json(output);
   },
 
   delete: (req, res) => {

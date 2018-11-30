@@ -1,3 +1,5 @@
 var app = angular.module('main', [
-    'toastr'
+    'toastr',
+    'ngDialog',
+    'ngMaterial'
 ]);

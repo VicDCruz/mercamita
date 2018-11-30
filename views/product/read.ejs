@@ -17,35 +17,34 @@
         }
     </style>
 </head>
-<body ng-controller="readCtrl" ng-init="product=<%=JSON.stringify(product)%>; seller=<%=JSON.stringify(seller)%>;">
-    <div class="row">
+<body ng-controller="readCtrl" ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; product=<%=JSON.stringify(product)%>; seller=<%=JSON.stringify(seller)%>;">
+    <nav class="navbar navbar-light bg-light">
+        <div class="col-md-5">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar producto" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
+        <div class="col-md-4 offset-md-3">
+            <a class="navbar-brand" href="/login" ng-if="user===null">Iniciar sesión</a>
+            <a class="navbar-brand" ng-if="user!==null">
+                <a class="btn btn-light" href="/profile">
+                        <small>{{user.name | uppercase}}</small>
+                </a>
+                <button type="button" class="btn btn-info" ng-if="!user===null" ng-click="logout()">
+                    <small>CERRAR SESION</small>
+                </button>
+            </a>
+        </div>
+    </nav>
+    <div class="row mt-4">
         <div class="col-md-6">
                 <div id="demo" class="carousel slide" data-ride="carousel">
-
-                    <!-- Indicators -->
-                    <!-- <ul class="carousel-indicators">
-                        <li data-target="#demo" data-slide-to="0" class="active"></li>
-                        <li data-target="#demo" data-slide-to="1"></li>
-                        <li data-target="#demo" data-slide-to="2"></li>
-                    </ul> -->
 
                     <ul class="carousel-indicators">
                         <li ng-repeat="image in product.images" data-target="#demo" data-slide-to="{{$index}}" class="active" ng-if="$index == 0"></li>
                         <li ng-repeat="image in product.images" data-target="#demo" data-slide-to="{{$index}}" ng-if="$index > 0"></li>
                     </ul>
-                    
-                    <!-- The slideshow -->
-                    <!-- <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="https://www.w3schools.com/bootstrap4/chicago.jpg" alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="https://www.w3schools.com/bootstrap4/la.jpg" alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="http://www.optimainfinito.com/wp-content/uploads/2009/02/perspectiva-vertical.jpg" alt="First slide">
-                        </div>
-                    </div> -->
 
                     <div class="carousel-inner">
                         <div ng-repeat="image in product.images" class="carousel-item active" ng-if="$index == 0">
@@ -72,7 +71,8 @@
                 </div>
                 <div class="card-body">
                     <h3>${{product.price}}</h3>
-                    <a role="button" class="btn btn-outline-danger" href="/products/{{product.id}}">Comprar</a>
+                    <a role="button" class="btn btn-outline-danger" ng-click="confirmBuy()">Comprar</a>
+                    <a role="button" class="btn btn-outline-success" ng-click="addToWishlist()">Agregar a <i class="em em-star2"></i></a>
                 </div>
             </div>
 
