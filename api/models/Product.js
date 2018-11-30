@@ -48,6 +48,14 @@ module.exports = {
       type: 'ref',
       columnType: 'ObjectId',
       required: true
+    },
+    // 0 := no vendido
+    // 1 := en proceso
+    // 2 := vendido
+    status: { 
+      type: 'number',
+      columnType: 'integer',
+      required: false
     }
   },
 

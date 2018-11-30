@@ -133,3 +133,5 @@ lib-cov
 package-lock.json
 # next.js build output
 .next
+
+data/backup

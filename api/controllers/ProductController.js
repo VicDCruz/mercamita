@@ -10,7 +10,8 @@ module.exports = {
     output = {};
     newestProducts = await Product.find({
       sort: 'createdAt DESC',
-      limit: 3
+      limit: 3,
+      where: {status: 0}
     });
     mostVisitedProducts = await Product.find({
       sort: 'views DESC',
