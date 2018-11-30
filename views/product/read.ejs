@@ -17,8 +17,27 @@
         }
     </style>
 </head>
-<body ng-controller="readCtrl" ng-init="product=<%=JSON.stringify(product)%>; seller=<%=JSON.stringify(seller)%>;">
-    <div class="row">
+<body ng-controller="readCtrl" ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; product=<%=JSON.stringify(product)%>; seller=<%=JSON.stringify(seller)%>;">
+    <nav class="navbar navbar-light bg-light">
+        <div class="col-md-5">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar producto" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
+        <div class="col-md-4 offset-md-3">
+            <a class="navbar-brand" href="/login" ng-if="user===null">Iniciar sesión</a>
+            <a class="navbar-brand" ng-if="user!==null">
+                <a class="btn btn-light" href="/profile">
+                        <small>{{user.name | uppercase}}</small>
+                </a>
+                <button type="button" class="btn btn-info" ng-if="!user===null" ng-click="logout()">
+                    <small>CERRAR SESION</small>
+                </button>
+            </a>
+        </div>
+    </nav>
+    <div class="row mt-4">
         <div class="col-md-6">
                 <div id="demo" class="carousel slide" data-ride="carousel">
 
@@ -53,7 +72,7 @@
                 <div class="card-body">
                     <h3>${{product.price}}</h3>
                     <a role="button" class="btn btn-outline-danger" ng-click="confirmBuy()">Comprar</a>
-                    <a role="button" class="btn btn-outline-success" ng-click="">Agregar a <i class="em em-star2"></i></a>
+                    <a role="button" class="btn btn-outline-success" ng-click="addToWishlist()">Agregar a <i class="em em-star2"></i></a>
                 </div>
             </div>
 

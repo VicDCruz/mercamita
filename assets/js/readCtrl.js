@@ -31,4 +31,18 @@ app.controller('readCtrl', ($scope, toastr, $http, $window, $mdDialog) => {
                 $window.location.href = 'http://www.google.com.mx'; // Mientras no estén las rutas
             }, function() { });
     };
+    $scope.addToWishlist = () => {
+        if ($scope.user == null) {
+            toastr.error("Debes iniciar sesión para continuar");
+        } else {
+            $http.put('/users/' + $scope.user.id + '/wishlist', {newProduct: $scope.product.id})
+                .then((response) => {
+                    if (response.data.status === 200) {
+                        toastr.success('Producto agregado a tu Wishlist', 'Éxito');
+                    } else {
+                        toastr.error('Ocurrió un error', '¡Ups!');
+                    }
+                });
+        } 
+    }
 })
