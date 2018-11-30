@@ -11,7 +11,7 @@ app.controller('readCtrl', ($scope, toastr, $http, $window, $mdDialog) => {
         alert = $mdDialog.confirm({
             title: 'Confirmar compra',
             textContent: '¿Estás seguro de comprar el producto?',
-            ariaLabel: product.name,
+            ariaLabel: $scope.product.name,
             ok: 'Sí',
             cancel: 'No'
         });
@@ -19,9 +19,16 @@ app.controller('readCtrl', ($scope, toastr, $http, $window, $mdDialog) => {
         $mdDialog
             .show(alert)
             .then(function() {
+                // $http.post('http://www.google.com.mx', user)
+                //     .then((response) => {
+                //         if (response.data.status === 200) {
+                //             // toastr.success('Nuevo usuario creado', 'Éxito');
+                //             // $scope.user.id = response.data.id;
+                //         } else {
+                //             // toastr.error('Usuario o contraseña incorrecta', 'Error');
+                //         }
+                //     });
                 $window.location.href = 'http://www.google.com.mx'; // Mientras no estén las rutas
-            }, function() {
-                $window.location.href = 'http://www.yahoo.com.mx';
-            });
+            }, function() { });
     };
 })
