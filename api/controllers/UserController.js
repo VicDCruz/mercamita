@@ -21,6 +21,12 @@ module.exports = {
     }
     newUser = await User.create(req.allParams()).fetch();
     console.log(newUser);
+    await sails.helpers.mailer(
+      newUser.email,
+      newUser.name,
+      newUser.id
+    );
+    
     output.id = newUser.id;
     return res.json(output);
   },
@@ -141,9 +147,19 @@ module.exports = {
       return res.view('user/profile');
     });
       /* sails.log(req.session.user) */
-      
-  
-},
+  },
+  activateAccount: async (req, res) => {
+    var id = req.param('id');
+    if (!id) {
+      return res.badRequest('No se especificaron parámetros correctos');
+    }
+    var updatedUser = await User.update({id: id}).set({verified: true}).fetch();
+    updatedUser = updatedUser[0];
+    if (!updatedUser.verified) {
+      return res.badRequest('Algo salió mal');
+    }
+    return res.view('email/success');
+  },
 
 };
 

@@ -15,7 +15,7 @@ module.exports.email = {
         user: 'do.not.reply.skynet@gmail.com', 
         pass: 'gh637zsrjpk7rcqywscmav'
     },
-    templateDir: 'views/email/verifyTemplate',
+    templateDir: 'views/email/',
     testMode: false,
     from: 'do.not.reply.skynet@gmail.com'
 }
