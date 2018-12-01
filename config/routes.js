@@ -51,6 +51,7 @@ module.exports.routes = {
   'POST /profile': 'UserController.uploadAvatar',
   'DELETE /users/:id': 'UserController.delete',
   'GET /users/verify': 'UserController.verify',
+  'GET /users/activate/account/:id': 'UserController.activateAccount',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

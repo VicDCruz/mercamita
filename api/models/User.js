@@ -44,6 +44,11 @@ module.exports = {
       type: 'ref',
       columnType: 'array',
       required: false
+    },
+    verified: {
+      type: 'boolean',
+      required: false,
+      defaultsTo: false
     }
   },
 
