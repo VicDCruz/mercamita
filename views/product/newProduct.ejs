@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+       <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   </head>
+   <body>
+        <div ng-controller='createProdCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); proceed=false">
+          <nav class="navbar navbar-light bg-light">
+                <div class="col-md-5">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar producto" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                    </form>
+                </div>
+                <div class="col-md-4 offset-md-3">
+                    <a class="navbar-brand" href="/login" ng-if="user===null">Iniciar sesión</a>
+                    <a class="navbar-brand" ng-if="user!==null">
+                        <a class="btn btn-light" href="/profile">
+                            <small>{{user.name | uppercase}}</small>
+                        </a>
+                        <button type="button" class="btn btn-info" ng-click="logout()">
+                            <small>CERRAR SESION</small>
+                        </button>
+                    </a>
+                </div>
+           </nav>
+
+           <div>
+               
+                    <div class="row">
+                        <h2>Agregar nuevo producto</h2>
+
+                    </div>
+                    <br>
+                    <div class="row">
+
+                            <h4>Agregue la información del producto necesaria</h4>
+                            <div class="spacer"></div>
+                            <div class="col-md-1">
+
+                            </div>
+
+                            <div class="col-md-11">
+                                <form class="inputsGroup" name="dataForm">
+                                    <div class="form-group">
+                                        <label for="inputName">Nombre del producto</label>
+                                        <input type="text" class="form-control" id="inputName" placeholder="eg. Calzones bombachos" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputDesc">Descricpción</label>
+                                        <input type="text" class="form-control" id="inputDesc" placeholder="eg. Tela suave, blancos con lunares rojos" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="inputPrice">Precio</label>
+                                        <input type="number" class="form-control" id="inputPrice" placeholder="eg. 999.99" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputCateg" required>Categorías</label>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="checkbox" name="check1" value="Tecnología"> <span> Tecnología </span>
+                                                <br>
+                                                <input type="checkbox" name="check2" value="Libros"> <span> Libros </span>
+                                                <br>
+                                                <input type="checkbox" name="check3" value="Discos"> <span> Discos </span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="checkbox" name="check4" value="Útiles Escolares"> <span> Útiles escolares</span>
+                                                <br>
+                                                <input type="checkbox" name="check5" value="Ropa"> <span> Ropa </span>
+                                                <br>
+                                                <input type="checkbox" name="check6" value="Automóviles"> <span> Automóviles </span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="checkbox" name="check7" value="Miscelaneos"> <span> Miscelaneos </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputTag">Etiqueta</label> <small>(Seleccionar solo una etiqueta)</small>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="radio" id="radio1" name="optionsRadios" value="NUEVO"> <span> Nuevo </span>
+                                                <br>
+                                                <input type="radio" id="radio2" name="optionsRadios" value="SEMI-NUEVO"> <span> Semi nuevo </span>
+                                                
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="radio" id="radio3" name="optionsRadios" value="ESPECIAL"> <span> Especial </span>
+                                                <br>
+                                                <input type="radio" id="radio4" name="optionsRadios" value="ÚLTIMO"> <span> Último </span>
+                                                <br>
+                                                
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="radio" id="radio5" name="optionsRadios" value="ÚNICO"> <span> Único </span>
+                                                <br>
+                                                <input type="radio" id="radio6" name="optionsRadios" value="OFERTA"> <span> Oferta </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <h4>Agregue imágenes a su anuncio</h4> 
+                                    </div>
+                                    <br>
+                                    <small>(Seleccione solamente 4 imágenes)</small>
+                                    <div class="spacer"></div>
+                                    
+                                    <div id="upImg" ng-controller="imgCtrl" class="center">
+                                        
+                                            <input class="btnFile" type="file"  id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" multiple/>
+                                     
+                                    </div>
+
+                                    <div class="spacer"></div>
+                                    <div class="spacer"></div>
+                                    <div style="text-align: center;">
+                                        
+                                    </div>
+                                    <!-- <button type="submit" ng-click="validateForm()" class="btn-lg btn btn-success" style="margin:auto">Publicar Producto</button> -->
+                                    <div class="center">
+                                        <input type="submit" ng-click="checkAndCreate()" class="btn-lg btn btn-success" value="Publicar Producto">
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                    </div>
+                    <div class="spacer"></div>
+                    
+                    <footer class="footer">
+                        <div class="container">
+                            <p class="text-muted">Un producto de Skynet, desarrollado exclusivamente para el ITAM.</p>
+                        </div>
+                    </footer>
+           </div>
+        
+           
+
+        </div>
+            
+        <style>
+            .inputsGroup{
+                width: 100%;
+            }
+
+            .spacer{
+                height: 50px;
+            }
+
+            .foto{
+                height: 150px;
+                width: 150px;
+                border: solid 1px;
+                border-color: black;
+                margin: auto;
+            }
+
+            .center{
+                display: flex;
+                justify-content: space-around;
+            }
+
+            .btnFile::-webkit-file-upload-button {
+                visibility: hidden;
+            }
+
+            .btnFile::before{
+                content: 'Elegir imagen';
+                
+                display: inline-block;
+                padding: 6px 12px;
+                margin-bottom: 0;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 1.42857143;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                -ms-touch-action: manipulation;
+                touch-action: manipulation;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                background-image: none;
+                border: 1px solid transparent;
+                border-radius: 4px;
+                color: #fff;
+                background-color: #5cb85c;
+                border-color: #4cae4c;
+            }
+
+            .btnFile:hover::before {
+                color: #fff;
+                background-color: #1e7e34;
+                border-color: #1c7430;
+            }
+        </style>
+    </body>
+</html>
+

@@ -37,7 +37,8 @@ module.exports = {
       required: false
     },
     images: {
-      type: 'string',
+      type: 'ref',
+      columnType: 'array',
       required: false
     },
     buyer: {
@@ -46,7 +47,7 @@ module.exports = {
     },
     seller: {
       type: 'ref',
-      columnType: 'ObjectId',
+      columnType: 'string',
       required: true
     }
   },

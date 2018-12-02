@@ -56,7 +56,7 @@
                                 <h1>{{user.name}}</h1>
                             </div>
                             <div class="col-md-1 offset-md-3">
-                                <button type="button" class="btn btn-success">Editar información personal</button>
+                                
                             </div>
                         </div>
                                 <div class="col-md-4 secIzq">
@@ -66,8 +66,8 @@
                                     <div class="spacer"></div>
                                     <div id="upImg" ng-controller="imgCtrl" style="display:none;">
                                         <form action="http://localhost:1337/profile?tipo=profile" enctype="multipart/form-data" method="post" >
-                                            <input   type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" multiple  />
-                                            <input type="submit" value="Upload" ng-click="msgRefreca()">
+                                            <input   type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png"/>
+                                            <input type="submit" value="Subir" ng-click="msgRefreca()">
  
                                         </form>
                                      </div>
@@ -75,6 +75,9 @@
  
                             <p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>{{user.telephone}}</p>
                             <p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{user.email}}</p>
+                            <br>
+                            <button type="button" class="btn btn-success">Editar información personal</button>
+                            <br> <br>
                             <button type="button" class="btn btn-WL list-group-item active" onclick="wishL()">Lista de deseos</button>
                             <div class="list-group" id="wL" style="display: none;">
                                 <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProdWL" ng-repeat="pr in prodsWL" ng-click="getVendedor(pr)">{{pr.name}}</button>
@@ -88,6 +91,7 @@
                                     <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProd" ng-repeat="p in prods" ng-click="cambiaProdModal(p)">{{p.name}}</button>
                                 </div>
                                 <div>
+                                    <a class="btn btn-success" href="/product/create">Agregar productos</a> 
                                     <button type="button" class="btn btn-success right">Editar productos publicados</button>
                                     <div class="spacer"></div>
                                 </div>
@@ -159,9 +163,11 @@
                                 <div class="foot">
                                 </div>
                             </div>
-                        <div class="foot">
-     
-                        </div>
+                            <footer class="footer">
+                                <div class="container">
+                                    <p class="text-muted">Un producto de Skynet, desarrollado exclusivamente para el ITAM.</p>
+                                </div>
+                            </footer>
                     </div>
      
                 </div>
