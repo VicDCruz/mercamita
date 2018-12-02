@@ -33,6 +33,10 @@ a [Sails v1](https://sailsjs.com) application
   ```console
   ./runDocker.sh
   ```
+  2ª opción:
+  ```console
+  npm run docker:start
+  ```
 * Meterse al contenedor (usando NPM y dentro del proyecto ./mercamita) **OPCIONAL**
   ```console
   npm run docker:ssh
@@ -40,6 +44,10 @@ a [Sails v1](https://sailsjs.com) application
 * Correr Sails Lift **SE USARA UNA TERMINAL PARA VER COMO SE ACTUALIZA SAILS**
   ```console
   npm run docker:sails:start
+  ```
+* Obtener los datos de MongoDB en AWS
+  ```console
+  npm run docker:migration:dbs
   ```
 
 ### Version info
