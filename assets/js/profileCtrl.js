@@ -1,4 +1,4 @@
-app.controller('profileCtrl', ($scope, toastr, $http, $window) => {
+app.controller('profileCtrl', ($scope, toastr, $http, $window, ngDialog) => {
    $scope.user = null;
    $scope.init = () => {
       $http.get('user/?id='+$scope.user.id).then(function(result) {
@@ -6,62 +6,74 @@ app.controller('profileCtrl', ($scope, toastr, $http, $window) => {
          $scope.getProductos()
          console.log($scope.user)
       })
-   if (!$scope.user) $window.location.href = '/';
- };
- $scope.logout = () => {
-   $http.get('/logout')
-   .then((response) => {
-      toastr.success('Sesión cerrada', 'Éxito');
-      $window.location.href = '/';
-   });
- };
- $scope.getProds = (id) =>{
-   $http.get('/product?id=' + id).then(function(result) {
-      var res = result.data[0]
-      $scope.prods.push(res)
-      console.log(res)
-   }).catch(function() {
-      return null
-   });
- };
- $scope.getWL = (id) =>{
-   $http.get('/product?id=' + id).then(function(result) {
-      var res = result.data[0]
-      $scope.prodsWL.push(res)
-   }).catch(function() {
-      return null
-   });
- };
- $scope.getProductos = () =>{
-   var prod = $scope.user.products
-   var prodWL = $scope.user.wishList
-   if(prod != undefined)
-      prod.forEach(element => {
-      $scope.getProds(element)
-   });
- 
-   if(prodWL != undefined)
-      prodWL.forEach(element =>{
-         $scope.getWL(element)
-      })
+      if (!$scope.user) $window.location.href = '/';
    };
+   $scope.logout = () => {
+      $http.get('/logout')
+      .then((response) => {
+         toastr.success('Sesión cerrada', 'Éxito');
+         $window.location.href = '/';
+      });
+   };
+   $scope.getProds = (id) =>{
+      $http.get('/product?id=' + id).then(function(result) {
+         var res = result.data[0]
+         $scope.prods.push(res)
+         console.log(res)
+      }).catch(function() {
+         return null
+      });
+   };
+   $scope.getWL = (id) =>{
+      $http.get('/product?id=' + id).then(function(result) {
+         var res = result.data[0]
+         $scope.prodsWL.push(res)
+      }).catch(function() {
+         return null
+      });
+   };
+   $scope.getProductos = () =>{
+      var prod = $scope.user.products
+      var prodWL = $scope.user.wishList
+      if(prod != undefined)
+         prod.forEach(element => {
+         $scope.getProds(element)
+      });
+   
+      if(prodWL != undefined)
+         prodWL.forEach(element =>{
+            $scope.getWL(element)
+         })
+      };
+   
+   $scope.cambiaProdModal = (p) =>{
+      $scope.prodModal = p
+   };
+   
+   $scope.getVendedor = (id) => {
+      $scope.prodModal = id
+      $http.get('/user?id=' + id.seller).then(function(result) {
+         var res = result.data[0]
+         $scope.sellers.push(res)
+      }).catch(function() {
+         return null
+      });
+   }
+
+   $scope.clickToOpen = function () {
+      console.log('Click a editar info de usuario');
+      var newScope = $scope.$new();
+      newScope.user = $scope.user;
+      
+      ngDialog.open({
+          template: '../websites/infoEditorPopUp.html',
+          //plain: true
+          scope: newScope
+      });
+  };
+});
  
- $scope.cambiaProdModal = (p) =>{
-   $scope.prodModal = p
- };
- 
- $scope.getVendedor = (id) => {
-   $scope.prodModal = id
-   $http.get('/user?id=' + id.seller).then(function(result) {
-      var res = result.data[0]
-      $scope.sellers.push(res)
-   }).catch(function() {
-      return null
-   });
- }
- });
- 
- app.controller('imgCtrl',($scope,toastr,$http,$window) => {
+app.controller('imgCtrl',($scope,toastr,$http,$window) => {
    $scope.verificaCantImgs = (tipo) =>{
       var imgs = document.getElementById('fileUp');
       var cant = imgs.files.length
@@ -103,4 +115,4 @@ app.controller('profileCtrl', ($scope, toastr, $http, $window) => {
    $scope.msgRefreca = ()=>{
       toastr.info("Refresque la página para ver cambios")
    }
- });
+});
