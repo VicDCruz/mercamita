@@ -88,7 +88,7 @@
 
                         <h4>Publicado</h4>
                         <p ng-if="product.createdAt">
-                            {{product.createdAt}}
+                            {{product.createdAt | date:'dd-MM-yyyy'}}
                         </p>
                         <p ng-if="!product.createdAt">
                             {{1542936706000 | date:'dd-MM-yyyy'}}
