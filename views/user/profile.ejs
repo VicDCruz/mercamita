@@ -25,7 +25,7 @@
        </script>
    </head>
    <body>
-        <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); prods=[]; prodModal={}; prodsWL=[]; sellers=[];">
+        <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); prods=[]; prodModal={}; prodsWL=[]; sellers=[]; contP = false; contW = false; contH = false;">
             <nav class="navbar navbar-light bg-light">
                 <div class="col-md-5">
                     <form class="form-inline my-2 my-lg-0">
@@ -80,6 +80,7 @@
                                 <br> <br>
                                 <button type="button" class="btn btn-WL list-group-item active" onclick="wishL()">Lista de deseos</button>
                                 <div class="list-group" id="wL" style="display: none;">
+                                    <p ng-if="!contW" class="list-group-item">Todavía no has agregado productos a tu lista de deseos </p>
                                     <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProdWL" ng-repeat="pr in prodsWL" ng-click="getVendedor(pr)">{{pr.name}}</button>
                                 </div>
                                 <div class="spacer2"></div>
@@ -94,7 +95,7 @@
                                     </div>
                                     <div>
                                         <a class="btn btn-success" href="/product/create">Anunciar producto</a> 
-                                        <button type="button" class="btn btn-success right">Editar productos publicados</button>
+                                        <button ng-if="contP" type="button" class="btn btn-success right">Editar productos publicados</button>
                                         <div class="spacer"></div>
                                     </div>
                                 </div>
@@ -104,9 +105,10 @@
                                 <div class="contProd">
                                     <h3>Historial de compra-venta</h3>
                                     <div class="list-group" id="prodPub" style="height: 200px;">
-                                        <p class="list-group-item"><a href="perfil1">Paquito Perez</a> compró tu producto "Rayo láser"
+                                        <!-- <p class="list-group-item"><a href="perfil1">Paquito Perez</a> compró tu producto "Rayo láser"
                                         <p class="list-group-item"><a href="perfil2">Ramona Olmedo</a> compró tu producto "Desintegrador de personas"
-                                        <p class="list-group-item">Le compraste a <a href="perfil3">Salvador Roquefeler</a> el producto "Brincolin saltarín (edición limitada)"
+                                        <p class="list-group-item">Le compraste a <a href="perfil3">Salvador Roquefeler</a> el producto "Brincolin saltarín (edición limitada)" -->
+                                        <p ng-if="!contH" class="list-group-item">Tu historial de compras y ventas aparecerá aquí
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +117,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h2 class="modal-title">{{prodModal.name}}</h2>
+                                        <h2 class="modal-title"><a href="products/{{prodModal.id}}">{{prodModal.name}}</a></h2>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
