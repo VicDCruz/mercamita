@@ -7,7 +7,7 @@
        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    </head>
    <body>
-        <div ng-controller='createProdCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); proceed=false">
+        <div ng-controller='createProdCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); proceed=true; prod;">
           <nav class="navbar navbar-light bg-light">
                 <div class="col-md-5">
                     <form class="form-inline my-2 my-lg-0">
@@ -111,11 +111,15 @@
                                     <small>(Seleccione solamente 4 imágenes)</small>
                                     <div class="spacer"></div>
                                     
-                                    <div id="upImg" ng-controller="imgCtrl" class="center">
+                                    <!-- <div id="upImg" class="center">
                                         
-                                            <input class="btnFile" type="file"  id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" multiple/>
-                                     
-                                    </div>
+                                            <input class="btnFile" type="file"  id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" multiple required/>
+                                         <form name="imgForm" action="http://localhost:1337/picture" ng-submit="imgForm.$valid && verificaImg()" enctype="multipart/form-data" method="post" >
+                                            <input   type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" multiple required/>
+                                            <input type="submit" value="Subir" ng-click="imgForm.$valid && verificaImg()">
+    
+                                        </form> 
+                                    </div> -->
 
                                     <div class="spacer"></div>
                                     <div class="spacer"></div>
@@ -124,10 +128,37 @@
                                     </div>
                                     <!-- <button type="submit" ng-click="validateForm()" class="btn-lg btn btn-success" style="margin:auto">Publicar Producto</button> -->
                                     <div class="center">
-                                        <input type="submit" ng-click="checkAndCreate()" class="btn-lg btn btn-success" value="Publicar Producto">
+                                        <input type="submit" data-toggle="modal" data-target="#modalImg" ng-click="dataForm.$valid && proceed && checkAndCreate()" class="btn-lg btn btn-success" value="Subir imágenes" >
+                                        <!-- <input type="submit" ng-click="dataForm.$valid && checkAndCreate()" class="btn-lg btn btn-success" value="Subir imágenes" > -->
                                     </div>
-                                    
                                 </form>
+
+                                <div class="modal fade" id="modalImg" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2 class="modal-title">Subir imágenes al anuncio</h2>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="col-md-12" >
+                                                    <h3>Eliga una imagen. Podrá subir más después de publicar el producto.</h3>
+                                                    <form name="imgForm" action="{{'http://localhost:1337/picture?p='+prod.id+'&img='+prod.images}}" ng-submit="imgForm.$valid && verificaImg()" enctype="multipart/form-data" method="post" style="display: flex;">
+                                                        <input class="btnFile"  type="file" id="fileUp" name="imgP" accept="image/jpg, image/jpeg, image/png" required/>
+                                                        <input class="btnFile" type="submit" value="Subir" onSubmit="alert('Thank you for your feedback.');">
+                
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="foot">
+                                        <div class="spacer2"></div>
+                                    </div>
+                                        
+                                </div>
                             </div>
                     </div>
                     <div class="spacer"></div>

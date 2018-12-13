@@ -15,17 +15,16 @@ app.controller('createProdCtrl', ($scope, toastr, $http, $window) => {
     var seller = id;
     var views = 0;
 
-    $scope.verificaImg = (cant) => {
-        if(cant == 0){
-            toastr.error("Seleccione al menos un archivo");
+    $scope.verificaImg = () => {
+        var cant = document.getElementById('fileUp').files.length;
+        if (cant == 0){
+            return false;
+        }
+        if (cant > 4) {
+            toastr.error("Seleccione menos de 5 archivos");
             return false;
         }else{
-            if (cant > 4) {
-                toastr.error("Seleccione menos de 5 archivos");
-                return false;
-            }else{
-                return true;
-            }
+            return true;
         }
     };
 
@@ -60,38 +59,110 @@ app.controller('createProdCtrl', ($scope, toastr, $http, $window) => {
         
         
         console.log(tag)
-        if($scope.verificaImg(cant)){
-            console.log(':)')
-            //guardaImgs();
-            //falta subir imagenes
-            var prod = {
-                name: document.forms['dataForm']['inputName'].value.toString(),
-                views: 0,
-                price: document.forms['dataForm']['inputPrice'].value,
-                description: document.forms['dataForm']['inputDesc'].value.toString(),
-                category: cat,
-                tag: tag,
-                seller: id
-            }
-
-            $http.post('/products/new', prod)
-                .then((response) => {
-                    if(response.data.status === 200){
-                        $http.put('/users/'+id+'?change=product&item='+response.data.id)
-                            .then((response1) => {
-                                if(response1.data.status === 200){
-                                    alert('Producto publicado exitosamente');
-                                    $window.location.href='/profile';
-                                }else{
-                                    toastr.error('No se ha podido publicar el producto');
-                                }
-
-                            })
-                    }else{
-                        toastr.error('No se ha podido publicar el producto');
-                    }
-                })
+        
+        console.log(':)')
+        
+            /* if($scope.guardaImgs(cant)){
+                //falta subir imagenes */
+        var prod = {
+            name: document.forms['dataForm']['inputName'].value.toString(),
+            views: 0,
+            price: document.forms['dataForm']['inputPrice'].value,
+            description: document.forms['dataForm']['inputDesc'].value.toString(),
+            category: cat,
+            tag: tag,
+            seller: id,
+            images: []
         }
-    }
+
+        $http.post('/products/new', prod)
+            .then((response) => {
+                if(response.data.status === 200){
+                    $http.put('/users/'+id+'?change=product&item='+response.data.id)
+                        .then((response1) => {
+                            if(response1.data.status === 200){
+                                console.log(response.data)
+                                $scope.prod = response.data
+                                $scope.proceed = false;
+                                //alert('Producto publicado exitosamente');
+                                //$window.location.href='/profile';
+                            }else{
+                                toastr.error('No se ha podido publicar el producto');
+                            }
+
+                        })
+                }else{
+                    toastr.error('No se ha podido publicar el producto');
+                }
+            })
+            
+            
+        
+    },
+
+    $scope.guardaImgs = (cant) =>{
+        for(var i = 0; i < cant; i++){
+            var f = document.getElementById('fileUp').files[i]
+            
+            
+            console.log(f)
+            $http.post('/picture?prod='+f).then((response) => {
+                if(response.data.status === 200){
+                    toastr.info("Imágenes exitosamente cargadas");
+                    return true
+                }else{
+                    toastr.error('No se ha podido subir las imágenes');
+                    return false
+                }
+            })
+        }
+        
+    },
+
+    $scope.createProd = () => {
+        if($scope.guardaImgs(cant)){
+            //falta subir imagenes
+        var prod = {
+            name: document.forms['dataForm']['inputName'].value.toString(),
+            views: 0,
+            price: document.forms['dataForm']['inputPrice'].value,
+            description: document.forms['dataForm']['inputDesc'].value.toString(),
+            category: cat,
+            tag: tag,
+            seller: id,
+            images: []
+        }
+
+        $http.post('/products/new', prod)
+            .then((response) => {
+                if(response.data.status === 200){
+                    $http.put('/users/'+id+'?change=product&item='+response.data.id)
+                        .then((response1) => {
+                            if(response1.data.status === 200){
+                                alert('Producto publicado exitosamente');
+                                $window.location.href='/profile';
+                            }else{
+                                toastr.error('No se ha podido publicar el producto');
+                            }
+
+                        })
+                }else{
+                    toastr.error('No se ha podido publicar el producto');
+                }
+            })
+        }
+    },
+
+    $scope.clickToOpen = function () {
+        console.log('Click a editar info de usuario');
+        var newScope = $scope.$new();
+        newScope.user = $scope.user;
+        
+        ngDialog.open({
+            template: '../websites/subirImgs.html',
+            //plain: true
+            scope: newScope
+        });
+     };
     
 });

@@ -81,7 +81,7 @@ app.controller('profileCtrl', ($scope, toastr, $http, $window) => {
                               toastr.error("Solamente 1 imagen permitida")
                            else
                               $scope.subeImg(1,tipo)
-                        break;
+                        break;/* 
          case "prod":  if(cant == 0)
                            toastr.error("Seleccione entre 1 y 4 archivos");
                         else
@@ -89,7 +89,7 @@ app.controller('profileCtrl', ($scope, toastr, $http, $window) => {
                               toastr.error("Máximo 4 archivos");
                            else
                               $scope.subeImg(cant,tipo)
-                        break;
+                        break; */
       }
  
    },
@@ -109,6 +109,17 @@ app.controller('profileCtrl', ($scope, toastr, $http, $window) => {
       }
    },
    $scope.msgRefreca = ()=>{
-      toastr.info("Refresque la página para ver cambios")
+      var cant = document.getElementById('fileUp').files.length;
+      //console.log(cant)
+      if(cant == 0){
+         //toastr.error("Seleccione un archivo archivo");
+         return false
+      }
+      else{ 
+         /* $scope.subeImg(1,tipo) */
+         toastr.info("Refresque la página para ver cambios")
+         return true
+      }
+            
    }
  });

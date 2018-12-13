@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body ng-controller="infoEditorPopUpCtrl">
+    <div class="row">
+        <div class="col-md-10 mb-5 mx-auto bg-light">
+            <h1 class="mx-auto px-auto">
+                Subir imágenes al anuncio
+            </h1>
+            <div class="mx-auto">
+                <form name="imgForm" action="http://localhost:1337/picture" ng-submit="imgForm.$valid && verificaImg()" enctype="multipart/form-data" method="post" style="display: flex;">
+                    <input class="btnFile"  type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" multiple required/>
+                    <input class="btnFile" type="submit" value="Subir" ng-click="imgForm.$valid && verificaImg()">
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        
+        .btnFile::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+
+        .btnFile::before{
+            content: 'Elegir imagen';
+            
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #5cb85c;
+            border-color: #4cae4c;
+        }
+
+        .btnFile:hover::before {
+            color: #fff;
+            background-color: #1e7e34;
+            border-color: #1c7430;
+        }
+    </style>
+</body>
+</html>
