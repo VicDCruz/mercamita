@@ -34,11 +34,25 @@ module.exports = {
     })
   },
 
-  update: (req, res) => {
+  update: (req, res) =>  {
+    var change = req.param('change')
+    var item = req.param('item')
+    var id = req.param('id')
+    if(change == 'product'){
+      User.findOne({id: id}).exec((err, user) =>  {
+        if(err) throw err;
+        var prods = user.products;
+        prods.push(item)
+        User.update({id:id},{products:prods}).exec((err,ans) => {
+          if(err) throw err;
+        });
+      })
+    }
     var output = {
       status: 200,
       description: "OK"
     };
+    return res.json(output);
   },
 
   delete: (req, res) => {

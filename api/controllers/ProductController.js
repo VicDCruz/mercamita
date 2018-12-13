@@ -24,7 +24,8 @@ module.exports = {
   create: async (req, res) => {
     var output = {
       status: 200,
-      description: "OK"
+      description: "OK",
+      id:0
     };
     let parameters = req.allParams();
     let keys = Object.keys(parameters);
@@ -35,7 +36,7 @@ module.exports = {
     }
     newProduct = await Product.create(parameters).fetch();
     console.log(newProduct);
-    
+    output.id = newProduct.id;
     return res.json(output);
   },
 

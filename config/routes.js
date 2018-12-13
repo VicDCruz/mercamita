@@ -34,12 +34,18 @@ module.exports.routes = {
   'GET /pruebaImg':{
     view: 'user/pruebaImg'
   },  
+
+  'GET /product/create':{
+    view: 'product/newProduct'
+  },
+
   'GET /logout': 'UserController.logout',
   // === PRODUCTS ===
   'POST /products/new': 'ProductController.create',
   'GET /products/:id': 'ProductController.read',
   'PUT /products/:id': 'ProductController.update',
   'DELETE /products/:id': 'ProductController.delete',
+  
 
   // === USERS ===
   'POST /users/new': 'UserController.create',

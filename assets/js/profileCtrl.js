@@ -1,6 +1,8 @@
 app.controller('profileCtrl', ($scope, toastr, $http, $window) => {
    $scope.user = null;
    $scope.init = () => {
+      if (!$scope.user) $window.location.href = '/';
+        id = $scope.user.id
       $http.get('user/?id='+$scope.user.id).then(function(result) {
          $scope.user = result.data[0]
          $scope.getProductos()
