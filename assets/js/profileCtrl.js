@@ -6,6 +6,12 @@ app.controller('profileCtrl', ($scope, toastr, $http, $window) => {
       $http.get('user/?id='+$scope.user.id).then(function(result) {
          $scope.user = result.data[0]
          $scope.getProductos()
+         if($scope.user.products.length > 0)
+            $scope.contP = true;
+         if($scope.user.wishList.length > 0)
+            $scope.contW = true;
+         
+
          console.log($scope.user)
       })
    if (!$scope.user) $window.location.href = '/';
