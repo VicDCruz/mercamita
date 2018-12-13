@@ -26,7 +26,7 @@
    </head>
    <body>
         <div ng-controller='profileCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); prods=[]; prodModal={}; prodsWL=[]; sellers=[];">
-          <nav class="navbar navbar-light bg-light">
+            <nav class="navbar navbar-light bg-light">
                 <div class="col-md-5">
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Buscar producto" aria-label="Search">
@@ -46,70 +46,72 @@
                 </div>
             </nav>
  
-        <div class="row perfil">
-            <div class="col-md-12">
-                <div class="row">        </div>
-                <div class="row">
-                    <div class="container">
-                        <div class="col-md-12">
-                            <div class="col-md-9">
-                                <h1>{{user.name}}</h1>
-                            </div>
-                            <div class="col-md-1 offset-md-3">
-                                
-                            </div>
-                        </div>
-                                <div class="col-md-4 secIzq">
-                                    <img src="/images/users/{{user.profile}}" class="avatar img-circle img-thumbnail" alt="avatar">
-                                    <div class="spacer"></div>
-                                    <button type="button" class="btn btn-success" onclick="subeImg()">Selecciona otra imagen</button>
-                                    <div class="spacer"></div>
-                                    <div id="upImg" ng-controller="imgCtrl" style="display:none;">
-                                        <form action="http://localhost:1337/profile?tipo=profile" enctype="multipart/form-data" method="post" >
-                                            <input   type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png"/>
-                                            <input type="submit" value="Subir" ng-click="msgRefreca()">
- 
-                                        </form>
-                                     </div>
-                                    <div class="spacer"></div>
- 
-                            <p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>{{user.telephone}}</p>
-                            <p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{user.email}}</p>
-                            <br>
-                            <button type="button" class="btn btn-success">Editar información personal</button>
-                            <br> <br>
-                            <button type="button" class="btn btn-WL list-group-item active" onclick="wishL()">Lista de deseos</button>
-                            <div class="list-group" id="wL" style="display: none;">
-                                <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProdWL" ng-repeat="pr in prodsWL" ng-click="getVendedor(pr)">{{pr.name}}</button>
-                            </div>
-                        </div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-7 secDer">
-                            <div class="contProd">
-                                <h3>Lista de productos publicados</h3>
-                                <div class="list-group" id="prodPub">
-                                    <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProd" ng-repeat="p in prods" ng-click="cambiaProdModal(p)">{{p.name}}</button>
+            <div class="row perfil">
+                <div class="col-md-12">
+                    <div class="row">        </div>
+                    <div class="row">
+                        <div class="container">
+                            <div class="col-md-12">
+                                <div class="col-md-9">
+                                    <h1>{{user.name}}</h1>
                                 </div>
-                                <div>
-                                    <a class="btn btn-success" href="/product/create">Agregar productos</a> 
-                                    <button type="button" class="btn btn-success right">Editar productos publicados</button>
-                                    <div class="spacer"></div>
+                                <div class="col-md-1 offset-md-3">
+                                    
                                 </div>
                             </div>
-                            <div class="spacer2"></div>
-                            <div class="spacer2"></div>
-                            <div class="spacer"></div>
-                            <div class="contProd">
-                                <h3>Historial de compra-venta</h3>
-                                <div class="list-group" id="prodPub" style="height: 200px;">
-                                    <p class="list-group-item"><a href="perfil1">Paquito Perez</a> compró tu producto "Rayo láser"
-                                    <p class="list-group-item"><a href="perfil2">Ramona Olmedo</a> compró tu producto "Desintegrador de personas"
-                                    <p class="list-group-item">Le compraste a <a href="perfil3">Salvador Roquefeler</a> el producto "Brincolin saltarín (edición limitada)"
+                            <div class="col-md-4 secIzq">
+                                <img src="/images/users/{{user.profile}}" class="avatar img-circle img-thumbnail" alt="avatar">
+                                <div class="spacer"></div>
+                                <button type="button" class="btn btn-success" onclick="subeImg()">Selecciona otra imagen</button>
+                                <div class="spacer"></div>
+                                <div id="upImg" ng-controller="imgCtrl" style="display:none;">
+                                    <form action="http://localhost:1337/profile?tipo=profile" enctype="multipart/form-data" method="post" >
+                                        <input   type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png"/>
+                                        <input type="submit" value="Subir" ng-click="msgRefreca()">
+
+                                    </form>
+                                </div>
+                                <div class="spacer"></div>
+    
+                                <p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>{{user.telephone}}</p>
+                                <p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{user.email}}</p>
+                                <br>
+                                <button type="button" class="btn btn-success">Editar información personal</button>
+                                <br> <br>
+                                <button type="button" class="btn btn-WL list-group-item active" onclick="wishL()">Lista de deseos</button>
+                                <div class="list-group" id="wL" style="display: none;">
+                                    <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProdWL" ng-repeat="pr in prodsWL" ng-click="getVendedor(pr)">{{pr.name}}</button>
+                                </div>
+                                <div class="spacer2"></div>
+                                <div class="spacer2"></div>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-7 secDer">
+                                <div class="contProd">
+                                    <h3>Lista de productos publicados</h3>
+                                    <div class="list-group" id="prodPub">
+                                        <button type="button" class="list-group-item" data-toggle="modal" data-target="#modalProd" ng-repeat="p in prods" ng-click="cambiaProdModal(p)">{{p.name}}</button>
+                                    </div>
+                                    <div>
+                                        <a class="btn btn-success" href="/product/create">Anunciar producto</a> 
+                                        <button type="button" class="btn btn-success right">Editar productos publicados</button>
+                                        <div class="spacer"></div>
+                                    </div>
+                                </div>
+                                <div class="spacer2"></div>
+                                <div class="spacer2"></div>
+                                <div class="spacer"></div>
+                                <div class="contProd">
+                                    <h3>Historial de compra-venta</h3>
+                                    <div class="list-group" id="prodPub" style="height: 200px;">
+                                        <p class="list-group-item"><a href="perfil1">Paquito Perez</a> compró tu producto "Rayo láser"
+                                        <p class="list-group-item"><a href="perfil2">Ramona Olmedo</a> compró tu producto "Desintegrador de personas"
+                                        <p class="list-group-item">Le compraste a <a href="perfil3">Salvador Roquefeler</a> el producto "Brincolin saltarín (edición limitada)"
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal fade" id="modalProd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal fade" id="modalProd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -136,42 +138,46 @@
                             </div>
                         </div>
                         <div class="modal fade" id="modalProdWL" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h2 class="modal-title"><a href="products/{{prodModal.id}}">{{prodModal.name}}</a></h2>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="col-md-12">
-                                                <div class="col-md-6">
-                                                    <img src="/images/products/{{prodModal.images[0]}}" class="imgProd" alt="avatar">
-                                                </div>
-                                                <div class="col-md-6 txtCent">
-                                                    <h3>{{prodModal.description}}</h3>
-                                                    <h4><b> Categorias: </b></h4><h4 ng-repeat="categs in prodModal.category"> {{categs}}</h4><br>
-                                                    <span><b> ${{prodModal.price}}</b></span>
-                                                    <br>
-                                                    <h4><b> Vendedor: </b> {{sellers[0].name}}  </h4>  <br>
-                                                </div>
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2 class="modal-title"><a href="products/{{prodModal.id}}">{{prodModal.name}}</a></h2>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <img src="/images/products/{{prodModal.images[0]}}" class="imgProd" alt="avatar">
+                                            </div>
+                                            <div class="col-md-6 txtCent">
+                                                <h3>{{prodModal.description}}</h3>
+                                                <h4><b> Categorias: </b></h4><h4 ng-repeat="categs in prodModal.category"> {{categs}}</h4><br>
+                                                <span><b> ${{prodModal.price}}</b></span>
+                                                <br>
+                                                <h4><b> Vendedor: </b> {{sellers[0].name}}  </h4>  <br>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="foot">
-                                </div>
                             </div>
-                            <footer class="footer">
-                                <div class="container">
-                                    <p class="text-muted">Un producto de Skynet, desarrollado exclusivamente para el ITAM.</p>
-                                </div>
-                            </footer>
+                            <div class="foot">
+                                <div class="spacer2"></div>
+                            </div>
+                                
+                        </div>
+                        <div class="spacer2"></div>
+                        <footer class="footer">
+                            <div class="container">
+                                <p class="text-muted">Un producto de Skynet, desarrollado exclusivamente para el ITAM.</p>
+                            </div>
+                        </footer>
                     </div>
      
                 </div>
             </div>
+
             <style>
                     /* body{
                         background-color: #d6ead6 ;
