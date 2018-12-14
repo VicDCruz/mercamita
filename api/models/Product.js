@@ -56,7 +56,8 @@ module.exports = {
     status: { 
       type: 'number',
       columnType: 'integer',
-      required: false
+      required: false,
+      defaultsTo: 0
     }
   },
 

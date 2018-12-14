@@ -46,7 +46,7 @@ module.exports.routes = {
   'GET /products/:id': 'ProductController.read',
   'PUT /products/:id': 'ProductController.update',
   'DELETE /products/:id': 'ProductController.delete',
-  
+  'GET /buy/:id': 'ProductController.buy',
 
   // === USERS ===
   'POST /users/new': 'UserController.create',

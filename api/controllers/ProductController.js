@@ -15,7 +15,8 @@ module.exports = {
     });
     mostVisitedProducts = await Product.find({
       sort: 'views DESC',
-      limit: 3
+      limit: 3,
+      where: {status: 0}
     });
     output.newestProducts = newestProducts;
     output.mostVisitedProducts = mostVisitedProducts;
@@ -129,6 +130,17 @@ module.exports = {
 
     
     return res.json(output);
+  },
+  buy: async(req, res) => {
+    await Product.update({id: req.param('id')}).set({status: 1})
+    var product = await Product.update({id: req.param('id')}).set({buyer: req.session.user.id}).fetch();
+    var seller = await User.find({id: product[0].seller}).limit(1);
+    var output = {
+      seller: seller[0],
+      product: product[0]
+    }
+
+    return res.view('product/buy', output);
   }
 };
 

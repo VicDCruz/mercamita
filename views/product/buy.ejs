@@ -17,7 +17,7 @@
         }
     </style>
 </head>
-<body ng-controller="readCtrl" ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; product=<%=JSON.stringify(product)%>; seller=<%=JSON.stringify(seller)%>;">
+<body ng-controller="readCtrl" ng-init="product=<%=JSON.stringify(product)%>; seller=<%=JSON.stringify(seller)%>;">
     <div class="row">
         <div class="col-md-6">
                 <div id="demo" class="carousel slide" data-ride="carousel">
@@ -72,7 +72,6 @@
                 </div>
                 <div class="card-body">
                     <h3>${{product.price}}</h3>
-                    <a role="button" class="btn btn-outline-danger" ng-click="comprar(product.id)">Comprar</a>
                 </div>
             </div>
 
@@ -98,6 +97,12 @@
                             <h4>Vendedor</h4>
                             <p>
                                 {{seller.name}}
+                            </p>
+                            <p>
+                                {{seller.email}}
+                            </p>
+                            <p>
+                                {{seller.telephone}}
                             </p>
                         </div>
                     </div>
