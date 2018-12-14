@@ -48,11 +48,21 @@ module.exports = {
         });
       })
     }else{
-      console.log(req.param('remove'))
       if(req.param('remove')=="true"){
-        User.update({id:id},{$pull: {wishList: req.param('prod')}}).exec((err,ans) => {
+        var nuevoWL = [];
+        User.findOne({id: id}).exec((err, user) =>  {
           if(err) throw err;
-        });
+            console.log(user)
+            var wL = user.wishList;
+            console.log(wL)
+            wL.forEach(element => {
+              if(element != req.param('prod'))
+                nuevoWL.push(element)
+            });
+            User.update({id:id},{wishList:nuevoWL}).exec((err,ans) => {
+              if(err) throw err;
+            });
+          })        
       }else{
         if(change == "wl"){
           User.findOne({id: id}).exec((err, user) =>  {

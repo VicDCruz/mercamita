@@ -20,5 +20,17 @@ app.controller('readCtrl', ($scope, toastr, $http, $window) => {
             $scope.enWL = false;
             //$window.location.href = '/products/'+$scope.product.id;
         })
+    },
+    $scope.init = () => {
+        $http.get('/users/'+$scope.user.id).then((response) => {
+            console.log('en read')
+            var wl = response.data.wishList;
+            wl.forEach(element => {
+                if(element == $scope.product.id){
+                    $scope.enWL = true;
+                }
+            });
+            
+        })
     }
 })
