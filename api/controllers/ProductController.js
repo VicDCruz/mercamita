@@ -62,11 +62,13 @@ module.exports = {
   },
 
   update: (req, res) => {
-
+    var id = req.param('id')
+    console.log(id)
     var output = {
       status: 200,
       description: "OK"
     };
+    
   },
 
   delete: (req, res) => {

@@ -17,7 +17,7 @@
         }
     </style>
 </head>
-<body ng-controller="readCtrl" ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; product=<%=JSON.stringify(product)%>; seller=<%=JSON.stringify(seller)%>;">
+<body ng-controller="readCtrl" ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; product=<%=JSON.stringify(product)%>; seller=<%=JSON.stringify(seller)%>; enWL = false; init();">
     <div class="row">
         <div class="col-md-6">
                 <div id="demo" class="carousel slide" data-ride="carousel">
@@ -72,7 +72,13 @@
                 </div>
                 <div class="card-body">
                     <h3>${{product.price}}</h3>
+<<<<<<< HEAD
                     <a role="button" class="btn btn-outline-danger" ng-click="comprar(product.id)">Comprar</a>
+=======
+                    <a role="button" class="btn btn-outline-danger" href="/products/{{product.id}}">Comprar</a>
+                    <input type="button" ng-if="user!=null && !enWL" role="button" class="btn btn-outline-info" ng-click="addWL()" value="Añadir a lista de deseos"></input>
+                    <input type="button" ng-if="user!=null && enWL" role="button" class="btn btn-outline-danger" ng-click="removeWL()" value="Quitar de lista de deseos"></input>
+>>>>>>> b0d315f82837a72885142385bb3bc80e6b2ac50a
                 </div>
             </div>
 
