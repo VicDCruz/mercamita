@@ -47,6 +47,36 @@ module.exports = {
           if(err) throw err;
         });
       })
+    }else{
+      if(req.param('remove')=="true"){
+        var nuevoWL = [];
+        User.findOne({id: id}).exec((err, user) =>  {
+          if(err) throw err;
+            console.log(user)
+            var wL = user.wishList;
+            console.log(wL)
+            wL.forEach(element => {
+              if(element != req.param('prod'))
+                nuevoWL.push(element)
+            });
+            User.update({id:id},{wishList:nuevoWL}).exec((err,ans) => {
+              if(err) throw err;
+            });
+          })        
+      }else{
+        if(change == "wl"){
+          User.findOne({id: id}).exec((err, user) =>  {
+            if(err) throw err;
+            console.log(user)
+            var wL = user.wishList;
+            wL.push(req.param('prod'))
+            User.update({id:id},{wishList:wL}).exec((err,ans) => {
+              if(err) throw err;
+            });
+          })
+        }
+      }
+      
     }
     var output = {
       status: 200,
