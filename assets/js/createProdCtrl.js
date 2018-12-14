@@ -1,9 +1,10 @@
-app.controller('createProdCtrl', ($scope, toastr, $http, $window) => {
+app.controller('createProdCtrl', ($scope, toastr, $http, $window, fileUpload) => {
     $scope.user = null;
     var id;
     $scope.init = () => {
         if (!$scope.user) $window.location.href = '/';
         id = $scope.user.id
+        $scope.images = [];
     };
     $scope.logout = () => {
         $http.get('/logout')
@@ -29,8 +30,6 @@ app.controller('createProdCtrl', ($scope, toastr, $http, $window) => {
     };
 
     $scope.checkAndCreate = () => {
-        var cant = document.getElementById('fileUp').files.length;
-        console.log(cant)
         var cat = [];
         var cantCheck = 0;
         var cantRadio = 0;
@@ -46,24 +45,15 @@ app.controller('createProdCtrl', ($scope, toastr, $http, $window) => {
 
         var tag = '';
         for(var i=1; i<=6; i++){
-            if(document.getElementById('radio'+i).checked)
+            if(document.getElementById('radio'+i).checked) {
                 tag = document.getElementById('radio'+i).value
+            }
         }
         
-        if(cantCheck == 0){
-            toastr.error('Eliga al menos una categoría')
-        }
+        if(cantCheck == 0) toastr.error('Eliga al menos una categoría')
 
-        if(tag == '')
-            toastr.error('Eliga una etiqueta')
+        if(tag == '') toastr.error('Eliga una etiqueta')
         
-        
-        console.log(tag)
-        
-        console.log(':)')
-        
-            /* if($scope.guardaImgs(cant)){
-                //falta subir imagenes */
         var prod = {
             name: document.forms['dataForm']['inputName'].value.toString(),
             views: 0,
@@ -84,8 +74,9 @@ app.controller('createProdCtrl', ($scope, toastr, $http, $window) => {
                                 console.log(response.data)
                                 $scope.prod = response.data
                                 $scope.proceed = false;
-                                //alert('Producto publicado exitosamente');
-                                //$window.location.href='/profile';
+                                $scope.guardaImgs();
+                                toastr.success('¡Producto creado!');
+                                // $window.location.href = '/products/' + $scope.prod.id;
                             }else{
                                 toastr.error('No se ha podido publicar el producto');
                             }
@@ -95,33 +86,38 @@ app.controller('createProdCtrl', ($scope, toastr, $http, $window) => {
                     toastr.error('No se ha podido publicar el producto');
                 }
             })
-            
-            
-        
     },
 
-    $scope.guardaImgs = (cant) =>{
-        for(var i = 0; i < cant; i++){
-            var f = document.getElementById('fileUp').files[i]
-            
-            
-            console.log(f)
-            $http.post('/picture?prod='+f).then((response) => {
-                if(response.data.status === 200){
-                    toastr.info("Imágenes exitosamente cargadas");
-                    return true
-                }else{
-                    toastr.error('No se ha podido subir las imágenes');
-                    return false
-                }
-            })
+    $scope.addImage = () => {
+        if ($scope.images.length < 3) {
+            $scope.images.push(document.getElementById('image').files[0]);
+            var input = document.createElement('input');
+            input.setAttribute('id', 'image');
+            input.type = "file";
+            document.getElementById('imagesDiv').replaceChild(input, document.getElementById('imagesDiv').childNodes[1]);
+        } else {
+            toastr.error('Solo 4 imágenes y con archivos');
+        }
+    },
+
+    $scope.guardaImgs = () => {
+        console.log(document.getElementById('image').files[0]);
+        
+        if (document.getElementById('image').files[0]) {
+            $scope.images.push(document.getElementById('image').files[0]);
+        }
+        var uploadUrl = "/picture";
+
+        console.log($scope.images);
+        
+        for (let i = 0; i < $scope.images.length; i++) {
+            const image = $scope.images[i];
+            fileUpload.uploadFileToUrl(image, uploadUrl, $scope.prod.id);
         }
         
     },
 
     $scope.createProd = () => {
-        if($scope.guardaImgs(cant)){
-            //falta subir imagenes
         var prod = {
             name: document.forms['dataForm']['inputName'].value.toString(),
             views: 0,
@@ -150,7 +146,6 @@ app.controller('createProdCtrl', ($scope, toastr, $http, $window) => {
                     toastr.error('No se ha podido publicar el producto');
                 }
             })
-        }
     },
 
     $scope.clickToOpen = function () {
@@ -166,3 +161,36 @@ app.controller('createProdCtrl', ($scope, toastr, $http, $window) => {
      };
     
 });
+
+app.service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = (file, uploadUrl, id) => {
+        var output = {
+            id: id
+        }
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            var data = reader.result;
+            output.image = data;
+            console.log(output);
+            
+            return $http({
+                method: "post",
+                url: uploadUrl,
+                data: output,
+                config: {
+                    transformRequest: angular.identity,
+                    headers: {'Content-Type': 'multipart/form-data'}
+                }
+            }).then((response) => {
+                if (response.data.status === 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        }
+
+        reader.readAsDataURL(file); 
+    }
+}]);
