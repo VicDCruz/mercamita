@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
    <head>
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+       <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
        <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
-       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
    </head>
    <body>
-        <div ng-controller='createProdCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); proceed=false">
+        <div ng-controller='createProdCtrl' ng-init="user=<%=JSON.stringify((req.session.user) ? req.session.user : null)%>; init(); proceed=true; prod;">
           <nav class="navbar navbar-light bg-light">
                 <div class="col-md-5">
                     <form class="form-inline my-2 my-lg-0">
@@ -107,26 +108,14 @@
                                     <div class="row">
                                         <h4>Agregue imágenes a su anuncio</h4> 
                                     </div>
-                                    <br>
                                     <small>(Seleccione solamente 4 imágenes)</small>
-                                    <div class="spacer"></div>
-                                    
-                                    <div id="upImg" ng-controller="imgCtrl" class="center">
-                                        
-                                            <input class="btnFile" type="file"  id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" multiple/>
-                                     
-                                    </div>
-
-                                    <div class="spacer"></div>
-                                    <div class="spacer"></div>
-                                    <div style="text-align: center;">
-                                        
-                                    </div>
-                                    <!-- <button type="submit" ng-click="validateForm()" class="btn-lg btn btn-success" style="margin:auto">Publicar Producto</button> -->
                                     <div class="center">
-                                        <input type="submit" ng-click="checkAndCreate()" class="btn-lg btn btn-success" value="Publicar Producto">
+                                        <div id="imagesDiv">
+                                            <input type = "file" id="image"/>
+                                        </div>
+                                        <i class="fas fa-plus-circle" ng-click="addImage()"></i>
                                     </div>
-                                    
+                                    <button type="button" ng-click="checkAndCreate()" class="btn-lg btn btn-success">Guardar producto</button>
                                 </form>
                             </div>
                     </div>
@@ -137,10 +126,7 @@
                             <p class="text-muted">Un producto de Skynet, desarrollado exclusivamente para el ITAM.</p>
                         </div>
                     </footer>
-           </div>
-        
-           
-
+            </div>
         </div>
             
         <style>

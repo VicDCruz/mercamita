@@ -38,12 +38,14 @@ module.exports = {
     products: {
       type: 'ref',
       columnType: 'array',
-      required: false
+      required: false,
+      defaultsTo: []
     },
     wishList:{
       type: 'ref',
       columnType: 'array',
-      required: false
+      required: false,
+      defaultsTo: []
     }
   },
 

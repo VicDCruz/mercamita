@@ -142,6 +142,7 @@ module.exports = {
     return res.ok();
   },
   uploadImg: (req,res) => {
+    
     User.findOne(req.param('id')).exec(function (err, user){
       if (err) return res.serverError(err);
       if (!user) return res.notFound();
@@ -152,11 +153,13 @@ module.exports = {
   },
   uploadAvatar: (req,res) => {
 
+    
     var pathImg = 'assets/images/users'
     if(req.param('tipo') == 'prods'){
       pathImg = 'assets/images/products'
     }
     var nameImg =req.session.user.id + req.param('tipo')+'.jpg'
+    console.log(req.file('avatar'))
     req.file('avatar').upload({
       // don't allow the total upload size to exceed ~10MB
       maxBytes: 10000000,

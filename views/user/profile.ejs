@@ -65,9 +65,9 @@
                                 <button type="button" class="btn btn-success" onclick="subeImg()">Selecciona otra imagen</button>
                                 <div class="spacer"></div>
                                 <div id="upImg" ng-controller="imgCtrl" style="display:none;">
-                                    <form action="http://localhost:1337/profile?tipo=profile" enctype="multipart/form-data" method="post" >
-                                        <input   type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png"/>
-                                        <input type="submit" value="Subir" ng-click="msgRefreca()">
+                                    <form name="imgForm" action="http://localhost:1337/profile?tipo=profile" ng-submit="imgForm.$valid && msgRefreca()" enctype="multipart/form-data" method="post" >
+                                        <input   type="file" id="fileUp" name="avatar" accept="image/jpg, image/jpeg, image/png" required/>
+                                        <input type="submit" value="Subir" ng-click="imgForm.$valid && msgRefreca()">
 
                                     </form>
                                 </div>

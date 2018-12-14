@@ -30,7 +30,7 @@
     "docker:sails:start": "docker exec -it mercamita_dev bash -c 'cd /mercamita/ && sails lift' && docker logs -ft",
     "docker:ssh": "docker exec -it mercamita_dev bash",
     "docker:migration:dbs": "./migrationDbs.sh"
-    },
+  },
   "main": "app.js",
   "repository": {
     "type": "git",
