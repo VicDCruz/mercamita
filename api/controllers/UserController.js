@@ -47,6 +47,26 @@ module.exports = {
           if(err) throw err;
         });
       })
+    }else{
+      console.log(req.param('remove'))
+      if(req.param('remove')=="true"){
+        User.update({id:id},{$pull: {wishList: req.param('prod')}}).exec((err,ans) => {
+          if(err) throw err;
+        });
+      }else{
+        if(change == "wl"){
+          User.findOne({id: id}).exec((err, user) =>  {
+            if(err) throw err;
+            console.log(user)
+            var wL = user.wishList;
+            wL.push(req.param('prod'))
+            User.update({id:id},{wishList:wL}).exec((err,ans) => {
+              if(err) throw err;
+            });
+          })
+        }
+      }
+      
     }
     var output = {
       status: 200,
