@@ -1,0 +1,25 @@
+Estilo, temas y colores
+
+Para encabezados: (clase por definir)
+    color: #015249 ;
+    font-size: 25px;
+
+Para subtitulos o enlaces remarcables: (clase por definir)
+    color: #57BC90;
+    font-size: 20px;
+
+Para texto en general: (en .body)
+    color: #3C3C3C;
+    font-size: 18px;
+
+Para botones: (clase por definir)
+    background-color: #77C9D4 o #57BC90;
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+    text-align: center;
+
+*Los tamaños de las letras son provisionales
+*Falta definir tipo de letra
+
+
